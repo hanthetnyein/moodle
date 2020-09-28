@@ -1,0 +1,175 @@
+<style>
+.usertour {
+	display:none;
+}
+
+@media only screen and (min-width: 403px) and (max-width: 768px) {
+.footerlogo::after {
+	position: absolute;
+	content:"";
+	width: 272px;
+	height: 1px;
+	background: #efefef;
+	bottom: 10px;
+	left: 30px;
+}
+}
+@media only screen and (max-width: 404px) {
+	
+.col-xxs-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.socials {
+    padding:0;
+}
+.footercontact {
+    margin-bottom:0;
+}
+
+.socials .fa-stack-2x {
+    width: 25px;
+    height: 25px;
+    display: none;
+}
+.socials .fa-stack-1x {
+    height: 25px;
+    width: 25px;
+    line-height: 26px;
+}
+
+#fbtext {
+    position: absolute;
+}
+#logo_wrapper {
+     	padding-right:0;
+}
+}
+
+@media only screen and (min-width: 404px) {
+	#right_links {
+	padding: 0;
+}
+}
+
+@media only screen and (min-width: 767px) {
+
+.custom-col-6 {
+	flex: 0 0 50%;
+        max-width: 50%;
+	display:flex;
+  	align-items: center;
+}
+#custom-algin {
+	padding-top: 5px;
+}
+.socials {
+	padding:0;
+}
+#outer_wrapper {
+	margin-top: 5px;
+}
+#custom-col-7 {
+	margin-top: -10px;
+}
+}
+
+@media only screen and (min-width: 999px) {
+	#outer_wrapper {
+	margin-left: 200px;
+	margin-right: 100px;
+}
+}
+
+
+
+</style>
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    Page footer.
+}}
+<footer id="page-footer" class="text-light notranslate" style="background:green;padding-top:10px;padding:0;margin-bottom:0;box-shadow: 0 0 25px -5px rgba(0,0,0,.7);">
+    <div class="container col-md-12" style="margin:0;padding:0;">
+
+        <div id="course-footer">{{{ output.course_footer }}}</div>
+
+        <div id="outer_wrapper" class="row" style="padding:0;">
+                <div id="logo_wrapper" class="col-md-4 col-sm-2 col-xs-2 d-flex align-items-center pl-0" style="border:1px solid red;">
+
+                    <div id="custom-algin" class="brandbox">
+
+                        {{#output.brandorganization_footer}}
+			<h3>{{output.brandorganization_footer}}</h3>
+			{{/output.brandorganization_footer}}
+                        <ul class="row footercontact" style="color:white;padding:0;">
+                        {{#output.brandwebsite_footer}}
+			<li class="col-md-12 col-xs-7 col-xxs-12 p-0">
+			<i class="fa fa-globe"></i>&nbsp;{{output.brandwebsite_footer}}
+			</li>{{/output.brandwebsite_footer}}
+                        {{#output.brandemail_footer}}<li>
+			<i class="fa fa-envelope"></i>
+			{{output.brandemail_footer}}</li>
+			{{/output.brandemail_footer}}
+                        </ul>
+		</div>
+
+                </div>
+		<div id="right_links" class="col-md-8 col-sm-10 col-xs-10" style="margin-top:5px;padding-right:0;margin-right:0;">
+		<div class="row">
+		<div class="col-md-4 custom-col-6 footerlogo" style="padding:0;border:1px solid red;">
+		     <div class="brandbox">
+
+                        <!-- {{{ output.social_icons }}} -->
+			<ul class="socials" style="margin-bottom:5px;">
+                    
+                    <span class="fa-stack fa-1x">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-inverse fa-stack-1x" style="background:#3b5998;border-radius:4px;box-shadow:1px 0px 20px -6px #000;"></i>
+                    </span>
+                    <span id="fbtext" style="color:white;font-size:15px;">www.facebook.com/mymeproject</span>          
+        	</ul>
+                </div>
+		</div>
+
+                <div id="custom-col-7" class="col-md-4 custom-col-6" style="padding:0;border:1px solid red;">
+
+		    <div id="custom-algin" class="brandbox">
+
+                        {{#output.brandorganization_footer}}
+			<h3>{{output.brandorganization_footer}}</h3>
+			{{/output.brandorganization_footer}}
+                        <ul class="row footercontact" style="color:white;padding:0;">
+                        {{#output.brandemail_footer}}<li>
+			<i class="fa fa-envelope"></i>
+			{{output.brandemail_footer}}</li>
+			{{/output.brandemail_footer}}
+                        {{#output.brandphone_footer}}
+			<li class="col-md-12 col-xs-5 col-xxs-12 p-0">&nbsp;<i class="fa fa-phone">
+			</i>&nbsp;{{output.brandphone_footer}}</li>
+			{{/output.brandphone_footer}}
+                        </ul>
+		</div>
+                    
+		</div>
+          	</div>
+       
+        {{{ output.standard_end_of_body_html }}}
+
+    </div>
+
+</footer>

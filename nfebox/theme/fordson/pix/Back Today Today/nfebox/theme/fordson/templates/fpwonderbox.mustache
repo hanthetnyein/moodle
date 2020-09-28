@@ -1,0 +1,203 @@
+<style>
+
+@media only screen and (max-width: 429px) {
+	#w-full {
+	width:100%!important;
+}
+}
+@media only screen and (min-width: 452px) {
+	#w-fixed {
+	width: 350px!important;
+}
+}
+
+</style>
+<div class="fpwonderbox">
+    <div class="container-fluid">
+    <div class="row"> 
+    <div class="col-md-12">
+
+        {{#hasfpiconnav}}
+
+                <div class="fpstartwrap">
+                <div class="fpstart">
+                    <div class="iconset">
+
+                        {{#fpiconnav}}
+                            {{#hasicon}}
+                            <div class="btn btn-secondary">
+                                <a role="button" href = {{{link}}} title = "{{{linktext}}}" alt="{{{linktext}}}" target="{{linktarget}}">
+                                    <div class="navicon" align="center">
+                                        <i class="fa fa-3x fa-{{{linkicon}}}"></i>
+                                    </div>
+                                    {{{linktext}}}
+                                </a>
+                            </div>
+                            {{/hasicon}}
+                        {{/fpiconnav}}
+
+                        {{#fpslideicon}}
+                            {{#hasicon}}
+                                <div class="btn btn-secondary">
+                                    <a role="button" data-toggle="collapse" href="#fpslider" aria-expanded="false" aria-controls="fpslider" title = "{{{linktext}}}" alt="{{{linktext}}}"> 
+                                        <div class="navicon" align="center">
+                                            <i class="fa fa-3x fa-{{{linkicon}}}"></i>
+                                        </div>
+                                        {{{linktext}}}
+                                    </a>
+                                </div>
+                            {{/hasicon}}
+                        {{/fpslideicon}}
+
+                        {{#fpcreateicon}}
+                            {{#hasicon}}
+                                <div class="btn btn-secondary createacourse">
+                                    <a role="button" href = {{{link}}} title = "{{{linktext}}}" alt= "{{{linktext}}}">
+                                        <div class="navicon" align="center">
+                                            <i class="fa fa-3x fa-{{{linkicon}}}"></i>
+                                        </div>
+                                        {{{linktext}}}
+                                    </a>
+                                </div>
+                            {{/hasicon}}
+                        {{/fpcreateicon}}
+                        
+                    </div>
+                </div>
+                </div>
+
+                {{#hasslidetextbox}}
+                    <div class="collapse" id="fpslider">
+                        {{{slidetextbox}}}
+                    </div>
+                {{/hasslidetextbox}}
+                <div style="clear:both;"></div>
+
+        {{/hasfpiconnav}}
+
+        {{#hasalert}}
+            <div class="alertbox">
+                <div class="alertmessage">
+                {{{alertbox}}}
+                </div>
+            </div>
+            <div style="clear:both;"></div>
+        {{/hasalert}}
+
+        {{#hasfptextbox}}
+                <div class="fptextbox">
+                    {{{fptextbox}}}
+                </div>
+        <div style="clear:both;"></div>
+        {{/hasfptextbox}}
+</div>
+</div>
+</div>
+
+{{#hasfptextboxlogout}}
+
+<!-- ********************************* Login Slider Page ******************************************** -->
+
+<div class="container-fluid p-0">
+    <div class="row">
+    <div class="col-md-12 p-0">
+    {{#hasshowloginform}}
+            <div class="col-md-12 signinform m-0 p-0">
+            <div class="fpsignup d-flex justify-content-end" style="margin-top:6%;box-shadow:none;transition:none;background: border-radius:5px;box-shadow:inset 0px 0px 4px 0px #000;padding-bottom:20px;background:#ababab!important;">
+
+<script src="/nfebox/theme/fordson/javascript/bootstrap.min.js"></script>
+<div id="background-slider" class="col-md-12 p-0">
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="position:absolute;height:100%;width:inherit;"  data-interval="2500">
+  <div class="carousel-inner" style="height:inherit;">
+    <div class="carousel-item active" style="height:inherit;">
+      <img class="d-block w-100 h-100" src="/nfebox/theme/fordson/pix/slider1.jpg" alt="First slide" style="position:absolute;right:0;filter: blur(1.5px);">
+    </div>
+    <div class="carousel-item" style="height:inherit;">
+      <img class="d-block w-100 h-100" src="/nfebox/theme/fordson/pix/slider2.jpg" alt="Second slide" style="position:absolute;right:0;filter: blur(1.5px);">
+    </div>
+  </div>
+</div>
+<!-- ************************************Main Page Login Form**************************************** -->
+
+<div class="card col-md-4" style="background:none;">
+<div id="android-view" style="padding:18px;margin-top:50px;margin-bottom:-25px;position:relative;top:20px;">
+  
+<!-- {{#str}}fpsignup, theme_fordson{{/str}} -->         
+                        <form id="w-fixed" action="{{{ config.wwwroot }}}/login/index.php" method="POST" role="form">
+
+                        <input type="hidden" name="logintoken" value="{{logintoken}}">
+                            <label for="username" style="color:#fff;font-weight:600;text-shadow: 1px 1px 2px black, 0 0 1em blue, 0 0 0.2em blue;font-size:20px!important;">
+                              {{^canloginbyemail}}
+                                  * အမည်
+                              {{/canloginbyemail}}
+                              {{#canloginbyemail}}
+                                  {{#str}}usernameemail{{/str}}
+                              {{/canloginbyemail}}
+                            </label>
+                            <div class="input-group">
+                              <div class="input-group-addon"></div>
+                              <input type="text" class="form-control" id="username" name="username" required style="box-shadow:inset 0px 0px 2px 1px #666;border:1px solid black;background:rgba(255,255,255,0.5);border-radius:2px;"/>
+                            </div>
+
+                            <label for="password" style="color:#fff;font-weight:600;text-shadow: 1px 1px 2px black, 0 0 1em blue, 0 0 0.2em blue;font-size:20px!important;">* အဖေအမည်</label>
+<!-- text-shadow: 0 0 2px #323f5c, 0 0 1.5px #323f5c; -->
+                            <div class="input-group">
+                              <div class="input-group-addon"></div>
+                              <input type="text" class="form-control" id="password" name="password" required style="box-shadow:inset 0px 0px 2px 1px #666;border:1px solid black;background:rgba(255,255,255,0.5);border-radius:2px;"/>
+                            </div>
+
+<!-- *****************************************Log in Button********************************************** -->
+
+                            <div class="sign-up-btn mt-4"> 
+                                <button id="w-full" type="submit" class="btn mt-2" style="background:green;border-radius:4px;box-shadow:0px 0px 3px 0px #fff;width:130px;height:50px;margin-bottom:10px;font-weight:bold;color:white;">ဝင်ရောက်မည်</button>
+<a id="w-full" class="btn btn-register" href="{{{ config.wwwroot }}}/login/signup.php?" style="line-height:35px;border-radius:4px;background:#3b5998;box-shadow:0px 0px 3px 0px #fff;font-weight:bold;color:white;margin-bottom:2px;">ကျောင်းသားမှတ်ပုံတင်မည်</a>
+                            </div>
+                        </form>
+
+                        <p><a href="{{{ config.wwwroot }}}/login/forgot_password.php" style="color:#fff;font-weight:100;font-size:13px;display:none;">Forgot password?</a></p>
+</div>
+                        
+                        
+                   
+            </div>
+            </div>
+            {{/hasshowloginform}}
+
+                <div class="fptextbox">
+                    {{{fptextboxlogout}}}
+                </div>
+
+    </div>
+    </div>
+    </div>
+    <div style="clear:both;"></div>
+{{/hasfptextboxlogout}}
+
+{{#hasmarkettiles}}
+<div class="markettiles">
+    <div class="container-fluid">
+    <div class="row">
+
+        {{#markettiles}}
+        {{#hastile}}
+
+        <div class="col-md-4">
+        <div class="market-tile"> 
+            <h3 class="card-title">{{{title}}}</h3>
+            <div class="marketcontent {{{tileimage}}}">
+            <p>{{{content}}}<p>
+            </div>
+            {{{button}}} 
+        </div>
+        </div>
+
+        {{/hastile}}
+        {{/markettiles}}
+
+    </div>
+    </div>
+</div>
+<div style="clear:both;"></div>
+{{/hasmarkettiles}}
+
+</div>
