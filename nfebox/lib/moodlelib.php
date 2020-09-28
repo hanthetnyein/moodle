@@ -3402,7 +3402,7 @@ function user_not_fully_set_up($user, $strict = true) {
         return false;
     }
 
-    if (empty($user->firstname) /*or empty($user->lastname) or empty($user->email)*/ or over_bounce_threshold($user)) {
+    if (empty($user->firstname) or empty($user->lastname) or empty($user->email) or over_bounce_threshold($user)) {
         return true;
     }
 
@@ -4409,20 +4409,10 @@ function guest_user() {
  * @return stdClass|false A {@link $USER} object or false if error
  */
 function authenticate_user_login($username, $password, $ignorelockout=false, &$failurereason=null, $logintoken=false) {
-    global $CFG, $DB;
-    if ( preg_match('/\s/',$username) ) {
-	$username = str_replace(' ', '', $username);
-    }
-    $type_father_name = $DB->get_field_sql("SELECT f.id 
-              FROM {user_info_field} AS f
-              WHERE f.shortname = 'father_hide'");
+    global $CFG, $DB, $PAGE;
+    require_once("$CFG->libdir/authlib.php");
 
-    $id_here = $DB->get_field_sql("SELECT d.userid
-              FROM {user_info_data} AS d JOIN {user} AS u ON u.id = d.userid
-	      WHERE d.fieldid = '$type_father_name'
-              AND u.username = '$username' AND d.data = '$password'");
-
-    if ($user = get_complete_user_data('username', $username, $id_here, $CFG->mnet_localhost_id)) {
+    if ($user = get_complete_user_data('username', $username, $CFG->mnet_localhost_id)) {
         // we have found the user
 
     } else if (!empty($CFG->authloginviaemail)) {
@@ -4444,10 +4434,15 @@ function authenticate_user_login($username, $password, $ignorelockout=false, &$f
     if (!\core\session\manager::validate_login_token($logintoken)) {
         $failurereason = AUTH_LOGIN_FAILED;
 
-        // Trigger login failed event.
-        $event = \core\event\user_login_failed::create(array('userid' => $user->id,
-                'other' => array('username' => $username, 'reason' => $failurereason)));
-        $event->trigger();
+        // Trigger login failed event (specifying the ID of the found user, if available).
+        \core\event\user_login_failed::create([
+            'userid' => ($user->id ?? 0),
+            'other' => [
+                'username' => $username,
+                'reason' => $failurereason,
+            ],
+        ])->trigger();
+
         error_log('[client '.getremoteaddr()."]  $CFG->wwwroot  Invalid Login Token:  $username  ".$_SERVER['HTTP_USER_AGENT']);
         return false;
     }
@@ -4488,7 +4483,7 @@ function authenticate_user_login($username, $password, $ignorelockout=false, &$f
 
     } else {
         // Check if there's a deleted record (cheaply), this should not happen because we mangle usernames in delete_user().
-        if ($DB->get_field('user', 'id', array('username' => $username, 'deleted' => 1))) {
+        if ($DB->get_field('user', 'id', array('username' => $username, 'mnethostid' => $CFG->mnet_localhost_id,  'deleted' => 1))) {
             $failurereason = AUTH_LOGIN_NOUSER;
 
             // Trigger login failed event.
@@ -4531,6 +4526,42 @@ function authenticate_user_login($username, $password, $ignorelockout=false, &$f
         // On auth fail fall through to the next plugin.
         if (!$authplugin->user_login($username, $password)) {
             continue;
+        }
+
+        // Before performing login actions, check if user still passes password policy, if admin setting is enabled.
+        if (!empty($CFG->passwordpolicycheckonlogin)) {
+            $errmsg = '';
+            $passed = check_password_policy($password, $errmsg, $user);
+            if (!$passed) {
+                // First trigger event for failure.
+                $failedevent = \core\event\user_password_policy_failed::create_from_user($user);
+                $failedevent->trigger();
+
+                // If able to change password, set flag and move on.
+                if ($authplugin->can_change_password()) {
+                    // Check if we are on internal change password page, or service is external, don't show notification.
+                    $internalchangeurl = new moodle_url('/login/change_password.php');
+                    if (!($PAGE->has_set_url() && $internalchangeurl->compare($PAGE->url)) && $authplugin->is_internal()) {
+                        \core\notification::error(get_string('passwordpolicynomatch', '', $errmsg));
+                    }
+                    set_user_preference('auth_forcepasswordchange', 1, $user);
+                } else if ($authplugin->can_reset_password()) {
+                    // Else force a reset if possible.
+                    \core\notification::error(get_string('forcepasswordresetnotice', '', $errmsg));
+                    redirect(new moodle_url('/login/forgot_password.php'));
+                } else {
+                    $notifymsg = get_string('forcepasswordresetfailurenotice', '', $errmsg);
+                    // If support page is set, add link for help.
+                    if (!empty($CFG->supportpage)) {
+                        $link = \html_writer::link($CFG->supportpage, $CFG->supportpage);
+                        $link = \html_writer::tag('p', $link);
+                        $notifymsg .= $link;
+                    }
+
+                    // If no change or reset is possible, add a notification for user.
+                    \core\notification::error($notifymsg);
+                }
+            }
         }
 
         // Successful authentication.
@@ -4877,7 +4908,7 @@ function update_internal_user_password($user, $password, $fasthash = false) {
  *                              found. Otherwise, it will just return false.
  * @return mixed False, or A {@link $USER} object.
  */
-function get_complete_user_data($field, $value, $this_id, $throwexception = false) {
+function get_complete_user_data($field, $value, $mnethostid = null, $throwexception = false) {
     global $CFG, $DB;
 
     if (!$field || !$value) {
@@ -4898,23 +4929,17 @@ function get_complete_user_data($field, $value, $this_id, $throwexception = fals
     // Build the WHERE clause for an SQL query.
     $params = array('fieldval' => $value);
 
-    // Do a case-insensitive query, if necessary.
+    // Do a case-insensitive query, if necessary. These are generally very expensive. The performance can be improved on some DBs
+    // such as MySQL by pre-filtering users with accent-insensitive subselect.
     if (in_array($field, $caseinsensitivefields)) {
         $fieldselect = $DB->sql_equal($field, ':fieldval', false);
+        $idsubselect = $DB->sql_equal($field, ':fieldval2', false, false);
+        $params['fieldval2'] = $value;
     } else {
         $fieldselect = "$field = :fieldval";
+        $idsubselect = '';
     }
     $constraints = "$fieldselect AND deleted <> 1";
-
-    if ($records = $DB->get_records('user', null, 'id DESC', 'id', 0, 1)) {
-      // $DB->get_records() returns an array
-      // of objects indexed by the "id" field
-      // so get id of first record using key()
-      $id = key($records);
-     } else {
-      // oops, no records found
-      $id = 0;
-     }
 
     // If we are loading user data based on anything other than id,
     // we must also restrict our search based on mnet host.
@@ -4923,36 +4948,30 @@ function get_complete_user_data($field, $value, $this_id, $throwexception = fals
             // If empty, we restrict to local users.
             $mnethostid = $CFG->mnet_localhost_id;
         }
-	}
-	else {
-	    if(empty($this_id)) {
-	    	$this_id = $id;
-	}
     }
     if (!empty($mnethostid)) {
         $params['mnethostid'] = $mnethostid;
-	$params['id'] = $this_id;
         $constraints .= " AND mnethostid = :mnethostid";
-	$constraints .= " AND id = :id";
     }
-    
+
+    if ($idsubselect) {
+        $constraints .= " AND id IN (SELECT id FROM {user} WHERE {$idsubselect})";
+    }
+
     // Get all the basic user data.
-    //try {
+    try {
         // Make sure that there's only a single record that matches our query.
         // For example, when fetching by email, multiple records might match the query as there's no guarantee that email addresses
         // are unique. Therefore we can't reliably tell whether the user profile data that we're fetching is the correct one.
         $user = $DB->get_record_select('user', $constraints, $params, '*', MUST_EXIST);
-	
-	
-
-    //} catch (dml_exception $exception) {
-        //if ($throwexception) {
-            //throw $exception;
-        //} else {
+    } catch (dml_exception $exception) {
+        if ($throwexception) {
+            throw $exception;
+        } else {
             // Return false when no records or multiple records were found.
-           // return false;
-       //}
-    //}
+            return false;
+        }
+    }
 
     // Get various settings and preferences.
 
