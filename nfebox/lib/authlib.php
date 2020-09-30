@@ -997,53 +997,53 @@ function signup_captcha_enabled() {
  * @return array list of errors, being the key the data element name and the value the error itself
  * @since Moodle 3.2
  */
-function signup_validate_data($data, $files) {
+function signup_validate_data($data, $files, $father, $cnt) {
     global $CFG, $DB;
 
+    
     $errors = array();
     $authplugin = get_auth_plugin($CFG->registerauth);
-
-    if ($DB->record_exists('user', array('username' => $data['username'], 'mnethostid' => $CFG->mnet_localhost_id))) {
-        $errors['username'] = get_string('usernameexists');
+ 
+    if ($data['username'] == $data['password']) {
+	$errors['password'] = 'အမည်နှင့် အဖေအမည် တူလို့မရပါ။';
+    }
+    
+    else {
+	if ($DB->record_exists('user', array('username' => $data['username']))) {
+	for($i=0;$i<$cnt;$i++) {
+	if ($data['password'] == $father[$i]) {
+	   $errors['password'] = 'ဤကျောင်းသားမှာ မှတ်ပုံတင်ထားပြီး ဖြစ်ပါသည်။';
+	}
+	}
     } else {
         // Check allowed characters.
         if ($data['username'] !== core_text::strtolower($data['username'])) {
-            $errors['username'] = get_string('usernamelowercase');
+            //$errors['username'] = get_string('usernamelowercase');
         } else {
             if ($data['username'] !== core_user::clean_field($data['username'], 'username')) {
-                $errors['username'] = get_string('invalidusername');
+                //$errors['username'] = get_string('invalidusername');
             }
 
         }
     }
-
+    }
+	
     // Check if user exists in external db.
     // TODO: maybe we should check all enabled plugins instead.
     if ($authplugin->user_exists($data['username'])) {
-        $errors['username'] = get_string('usernameexists');
+        //$errors['username'] = get_string('usernameexists');
     }
 
-    if (! validate_email($data['email'])) {
-        $errors['email'] = get_string('invalidemail');
-
-    } else if (empty($CFG->allowaccountssameemail)) {
+    else if (empty($CFG->allowaccountssameemail)) {
         // Make a case-insensitive query for the given email address.
         $select = $DB->sql_equal('email', ':email', false) . ' AND mnethostid = :mnethostid';
         $params = array(
             'email' => $data['email'],
             'mnethostid' => $CFG->mnet_localhost_id,
         );
-        // If there are other user(s) that already have the same email, show an error.
-        if ($DB->record_exists_select('user', $select, $params)) {
-            $forgotpasswordurl = new moodle_url('/login/forgot_password.php');
-            $forgotpasswordlink = html_writer::link($forgotpasswordurl, get_string('emailexistshintlink'));
-            $errors['email'] = get_string('emailexists') . ' ' . get_string('emailexistssignuphint', 'moodle', $forgotpasswordlink);
-        }
+        
     }
-    if (empty($data['email2'])) {
-        $errors['email2'] = get_string('missingemail');
-
-    } else if (core_text::strtolower($data['email2']) != core_text::strtolower($data['email'])) {
+    else if (core_text::strtolower($data['email2']) != core_text::strtolower($data['email'])) {
         $errors['email2'] = get_string('invalidemail');
     }
     if (!isset($errors['email'])) {
@@ -1082,7 +1082,6 @@ function signup_validate_data($data, $files) {
  */
 function signup_setup_new_user($user) {
     global $CFG;
-
     $user->confirmed   = 0;
     $user->lang        = current_language();
     $user->firstaccess = 0;
