@@ -72,23 +72,23 @@ define('HOURMINS', 60);
 // or clean_param() should have a specified type of parameter.
 
 /**
- * PARAM_ALPHA - contains only english ascii letters a-zA-Z.
+ * PARAM_ALPHA - contains only English ascii letters [a-zA-Z].
  */
 define('PARAM_ALPHA',    'alpha');
 
 /**
- * PARAM_ALPHAEXT the same contents as PARAM_ALPHA plus the chars in quotes: "_-" allowed
+ * PARAM_ALPHAEXT the same contents as PARAM_ALPHA (English ascii letters [a-zA-Z]) plus the chars in quotes: "_-" allowed
  * NOTE: originally this allowed "/" too, please use PARAM_SAFEPATH if "/" needed
  */
 define('PARAM_ALPHAEXT', 'alphaext');
 
 /**
- * PARAM_ALPHANUM - expected numbers and letters only.
+ * PARAM_ALPHANUM - expected numbers 0-9 and English ascii letters [a-zA-Z] only.
  */
 define('PARAM_ALPHANUM', 'alphanum');
 
 /**
- * PARAM_ALPHANUMEXT - expected numbers, letters only and _-.
+ * PARAM_ALPHANUMEXT - expected numbers 0-9, letters (English ascii letters [a-zA-Z]) and _- only.
  */
 define('PARAM_ALPHANUMEXT', 'alphanumext');
 
@@ -365,6 +365,10 @@ define('PAGE_COURSE_VIEW', 'course-view');
 define('GETREMOTEADDR_SKIP_HTTP_CLIENT_IP', '1');
 /** Get remote addr constant */
 define('GETREMOTEADDR_SKIP_HTTP_X_FORWARDED_FOR', '2');
+/**
+ * GETREMOTEADDR_SKIP_DEFAULT defines the default behavior remote IP address validation.
+ */
+define('GETREMOTEADDR_SKIP_DEFAULT', GETREMOTEADDR_SKIP_HTTP_X_FORWARDED_FOR|GETREMOTEADDR_SKIP_HTTP_CLIENT_IP);
 
 // Blog access level constant declaration.
 define ('BLOG_USER_LEVEL', 1);
@@ -947,7 +951,7 @@ function clean_param($param, $type) {
         case PARAM_COMPONENT:
             // We do not want any guessing here, either the name is correct or not
             // please note only normalised component names are accepted.
-            if (!preg_match('/^[a-z]+(_[a-z][a-z0-9_]*)?[a-z0-9]+$/', $param)) {
+            if (!preg_match('/^[a-z][a-z0-9]*(_[a-z][a-z0-9_]*)?[a-z0-9]+$/', $param)) {
                 return '';
             }
             if (strpos($param, '__') !== false) {
@@ -3398,7 +3402,7 @@ function user_not_fully_set_up($user, $strict = true) {
         return false;
     }
 
-    if (empty($user->firstname) or empty($user->lastname) or empty($user->email) or over_bounce_threshold($user)) {
+    if (empty($user->firstname) /*or empty($user->lastname) or empty($user->email)*/ or over_bounce_threshold($user)) {
         return true;
     }
 
@@ -4406,8 +4410,6 @@ function guest_user() {
  */
 function authenticate_user_login($username, $password, $ignorelockout=false, &$failurereason=null, $logintoken=false) {
     global $CFG, $DB;
-    require_once("$CFG->libdir/authlib.php");
-	
     if ( preg_match('/\s/',$username) ) {
 	$username = str_replace(' ', '', $username);
     }
@@ -4442,11 +4444,10 @@ function authenticate_user_login($username, $password, $ignorelockout=false, &$f
     if (!\core\session\manager::validate_login_token($logintoken)) {
         $failurereason = AUTH_LOGIN_FAILED;
 
-        // Trigger login failed event (specifying the ID of the found user, if available).
+        // Trigger login failed event.
         $event = \core\event\user_login_failed::create(array('userid' => $user->id,
                 'other' => array('username' => $username, 'reason' => $failurereason)));
         $event->trigger();
-
         error_log('[client '.getremoteaddr()."]  $CFG->wwwroot  Invalid Login Token:  $username  ".$_SERVER['HTTP_USER_AGENT']);
         return false;
     }
@@ -4487,7 +4488,7 @@ function authenticate_user_login($username, $password, $ignorelockout=false, &$f
 
     } else {
         // Check if there's a deleted record (cheaply), this should not happen because we mangle usernames in delete_user().
-        if ($DB->get_field('user', 'id', array('username' => $username, 'mnethostid' => $CFG->mnet_localhost_id,  'deleted' => 1))) {
+        if ($DB->get_field('user', 'id', array('username' => $username, 'deleted' => 1))) {
             $failurereason = AUTH_LOGIN_NOUSER;
 
             // Trigger login failed event.
@@ -4934,20 +4935,23 @@ function get_complete_user_data($field, $value, $this_id, $throwexception = fals
         $constraints .= " AND mnethostid = :mnethostid";
 	$constraints .= " AND id = :id";
     }
-
+    
     // Get all the basic user data.
-    try {
+    //try {
         // Make sure that there's only a single record that matches our query.
         // For example, when fetching by email, multiple records might match the query as there's no guarantee that email addresses
         // are unique. Therefore we can't reliably tell whether the user profile data that we're fetching is the correct one.
         $user = $DB->get_record_select('user', $constraints, $params, '*', MUST_EXIST);
+	
+	
+
     //} catch (dml_exception $exception) {
         //if ($throwexception) {
             //throw $exception;
         //} else {
             // Return false when no records or multiple records were found.
-            //return false;
-        //}
+           // return false;
+       //}
     //}
 
     // Get various settings and preferences.
@@ -5017,7 +5021,8 @@ function get_complete_user_data($field, $value, $this_id, $throwexception = fals
  *
  * @param string $password the password to be checked against the password policy
  * @param string $errmsg the error message to display when the password doesn't comply with the policy.
- * @param stdClass $user the user object to perform password validation against. Defaults to null if not provided
+ * @param stdClass $user the user object to perform password validation against. Defaults to null if not provided.
+ *
  * @return bool true if the password is valid according to the policy. false otherwise.
  */
 function check_password_policy($password, &$errmsg, $user = null) {
@@ -5043,16 +5048,16 @@ function check_password_policy($password, &$errmsg, $user = null) {
         if (!check_consecutive_identical_characters($password, $CFG->maxconsecutiveidentchars)) {
             $errmsg .= '<div>'. get_string('errormaxconsecutiveidentchars', 'auth', $CFG->maxconsecutiveidentchars) .'</div>';
         }
-    }
 
-    // Fire any additional password policy functions from plugins.
-    // Plugin functions should output an error message string or empty string for success.
-    $pluginsfunction = get_plugins_with_function('check_password_policy');
-    foreach ($pluginsfunction as $plugintype => $plugins) {
-        foreach ($plugins as $pluginfunction) {
-            $pluginerr = $pluginfunction($password, $user);
-            if ($pluginerr) {
-                $errmsg .= '<div>'. $pluginerr .'</div>';
+        // Fire any additional password policy functions from plugins.
+        // Plugin functions should output an error message string or empty string for success.
+        $pluginsfunction = get_plugins_with_function('check_password_policy');
+        foreach ($pluginsfunction as $plugintype => $plugins) {
+            foreach ($plugins as $pluginfunction) {
+                $pluginerr = $pluginfunction($password, $user);
+                if ($pluginerr) {
+                    $errmsg .= '<div>'. $pluginerr .'</div>';
+                }
             }
         }
     }
@@ -5315,9 +5320,16 @@ function remove_course_contents($courseid, $showfeedback = true, array $options 
     }
 
     // Delete questions and question categories.
-    question_delete_course($course, $showfeedback);
+    question_delete_course($course);
     if ($showfeedback) {
         echo $OUTPUT->notification($strdeleted.get_string('questions', 'question'), 'notifysuccess');
+    }
+
+    // Delete content bank contents.
+    $cb = new \core_contentbank\contentbank();
+    $cbdeleted = $cb->delete_contents($coursecontext);
+    if ($showfeedback && $cbdeleted) {
+        echo $OUTPUT->notification($strdeleted.get_string('contentbank', 'contentbank'), 'notifysuccess');
     }
 
     // Make sure there are no subcontexts left - all valid blocks and modules should be already gone.
@@ -9216,7 +9228,7 @@ function getremoteaddr($default='0.0.0.0') {
     if (empty($CFG->getremoteaddrconf)) {
         // This will happen, for example, before just after the upgrade, as the
         // user is redirected to the admin screen.
-        $variablestoskip = 0;
+        $variablestoskip = GETREMOTEADDR_SKIP_DEFAULT;
     } else {
         $variablestoskip = $CFG->getremoteaddrconf;
     }
@@ -9443,7 +9455,7 @@ function get_performance_info() {
         // Attempt to avoid devs debugging peformance issues, when its caused by css building and so on.
         $info['html'] .= '<p><strong>Warning: Theme designer mode is enabled.</strong></p>';
     }
-    $info['html'] .= '<ul class="list-unstyled ml-1 row">';         // Holds userfriendly HTML representation.
+    $info['html'] .= '<ul class="list-unstyled row mx-md-0">';         // Holds userfriendly HTML representation.
 
     $info['realtime'] = microtime_diff($PERF->starttime, microtime());
 
@@ -9508,6 +9520,12 @@ function get_performance_info() {
     $info['html'] .= '<li class="dbqueries col-sm-4">DB reads/writes: '.$info['dbqueries'].'</li> ';
     $info['txt'] .= 'db reads/writes: '.$info['dbqueries'].' ';
 
+    if ($DB->want_read_slave()) {
+        $info['dbreads_slave'] = $DB->perf_get_reads_slave();
+        $info['html'] .= '<li class="dbqueries col-sm-4">DB reads from slave: '.$info['dbreads_slave'].'</li> ';
+        $info['txt'] .= 'db reads from slave: '.$info['dbreads_slave'].' ';
+    }
+
     $info['dbtime'] = round($DB->perf_get_queries_time(), 5);
     $info['html'] .= '<li class="dbtime col-sm-4">DB queries time: '.$info['dbtime'].' secs</li> ';
     $info['txt'] .= 'db queries time: ' . $info['dbtime'] . 's ';
@@ -9553,18 +9571,20 @@ function get_performance_info() {
     $info['html'] .= '</ul>';
     $html = '';
     if ($stats = cache_helper::get_stats()) {
+
         $table = new html_table();
         $table->attributes['class'] = 'cachesused table table-dark table-sm w-auto table-bordered';
         $table->head = ['Mode', 'Cache item', 'Static', 'H', 'M', get_string('mappingprimary', 'cache'), 'H', 'M', 'S'];
         $table->data = [];
         $table->align = ['left', 'left', 'left', 'right', 'right', 'left', 'right', 'right', 'right'];
+
         $text = 'Caches used (hits/misses/sets): ';
         $hits = 0;
         $misses = 0;
         $sets = 0;
-	$maxstores = 0;
+        $maxstores = 0;
 
-	// We want to align static caches into their own column.
+        // We want to align static caches into their own column.
         $hasstatic = false;
         foreach ($stats as $definition => $details) {
             $numstores = count($details['stores']);
@@ -9593,19 +9613,20 @@ function get_performance_info() {
         }
 
         ksort($stats);
+
         foreach ($stats as $definition => $details) {
             switch ($details['mode']) {
                 case cache_store::MODE_APPLICATION:
                     $modeclass = 'application';
-                    $mode = ' <span title="application cache">[a]</span>';
+                    $mode = ' <span title="application cache">App</span>';
                     break;
                 case cache_store::MODE_SESSION:
                     $modeclass = 'session';
-                    $mode = ' <span title="session cache">[s]</span>';
+                    $mode = ' <span title="session cache">Ses</span>';
                     break;
                 case cache_store::MODE_REQUEST:
                     $modeclass = 'request';
-                    $mode = ' <span title="request cache">[r]</span>';
+                    $mode = ' <span title="request cache">Req</span>';
                     break;
             }
             $row = [$mode, $definition];
@@ -9621,9 +9642,10 @@ function get_performance_info() {
                     $row[] = '';
                     $storec++;
                 }
-                $hits += $data['hits'];
+
+                $hits   += $data['hits'];
                 $misses += $data['misses'];
-                $sets += $data['sets'];
+                $sets   += $data['sets'];
                 if ($data['hits'] == 0 and $data['misses'] > 0) {
                     $cachestoreclass = 'nohits bg-danger';
                 } else if ($data['hits'] < $data['misses']) {
@@ -10572,20 +10594,25 @@ function get_callable_name($callable) {
  * It just performs some simple checks, and mainly is used for places where we want to hide some options
  * such as site registration when $CFG->wwwroot is not publicly accessible.
  * Good thing is there is no false negative.
+ * Note that it's possible to force the result of this check by specifying $CFG->site_is_public in config.php
  *
  * @return bool
  */
 function site_is_public() {
     global $CFG;
+
     // Return early if site admin has forced this setting.
     if (isset($CFG->site_is_public)) {
         return (bool)$CFG->site_is_public;
     }
+
     $host = parse_url($CFG->wwwroot, PHP_URL_HOST);
 
     if ($host === 'localhost' || preg_match('|^127\.\d+\.\d+\.\d+$|', $host)) {
         $ispublic = false;
     } else if (\core\ip_utils::is_ip_address($host) && !ip_is_public($host)) {
+        $ispublic = false;
+    } else if (($address = \core\ip_utils::get_ip_address($host)) && !ip_is_public($address)) {
         $ispublic = false;
     } else {
         $ispublic = true;
