@@ -1502,7 +1502,7 @@ class core_course_renderer extends plugin_renderer_base {
         // Make sure JS file to expand category content is included.
         $this->coursecat_include_js();
 
-        $content = html_writer::start_tag('div', array(
+        $content = html_writer::start_tag('div id="cat" class="col-md-4" style="height:305px;overflow:hidden;display:flex;align-items:flex-start;justify-content:center;"', array(
             'class' => join(' ', $classes),
             'data-categoryid' => $coursecat->id,
             'data-depth' => $depth,
@@ -1520,9 +1520,20 @@ class core_course_renderer extends plugin_renderer_base {
             $categoryname .= html_writer::tag('span', ' ('. $coursescount.')',
                     array('title' => get_string('numberofcourses'), 'class' => 'numberofcourse'));
         }
-        $content .= html_writer::start_tag('div', array('class' => 'info'));
 
-        $content .= html_writer::tag(($depth > 1) ? 'h4' : 'h3', $categoryname, array('class' => 'categoryname'));
+	// Print current category description
+        $chelper = new coursecat_helper();
+        if ($description = $chelper->get_category_formatted_description($coursecat)) {
+            $contentimg .= $this->box($description, array('class' => 'generalbox info'));
+        }
+	$contentimg = html_writer::link(new moodle_url('/course/index.php',
+                array('categoryid' => $coursecat->id)),
+                $contentimg);
+
+        $content .= html_writer::start_tag('div style="width:260px;height:90%;border-radius:5px;"', array('class' => 'info'));
+
+        $content .= html_writer::tag(($depth > 1) ? 'h4' : 'figcaption style="padding:0;"','<span>'.$contentimg.'</span>', array('class' => 'categoryname'));
+	$content .= '<div style="display:inline-block;width:100%;position:absolute;bottom:15px;-moz-transform:translateX(-50%);-o-transform:translateX(-50%);-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);">'.$categoryname.'</div>';
         $content .= html_writer::end_tag('div'); // .info
 
         // add category content to the output
