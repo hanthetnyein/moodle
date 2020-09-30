@@ -1000,10 +1000,9 @@ function signup_captcha_enabled() {
 function signup_validate_data($data, $files, $father, $cnt) {
     global $CFG, $DB;
 
-    
     $errors = array();
     $authplugin = get_auth_plugin($CFG->registerauth);
- 
+
     if ($data['username'] == $data['password']) {
 	$errors['password'] = 'အမည်နှင့် အဖေအမည် တူလို့မရပါ။';
     }
@@ -1027,7 +1026,7 @@ function signup_validate_data($data, $files, $father, $cnt) {
         }
     }
     }
-	
+
     // Check if user exists in external db.
     // TODO: maybe we should check all enabled plugins instead.
     if ($authplugin->user_exists($data['username'])) {
@@ -1051,7 +1050,6 @@ function signup_validate_data($data, $files, $father, $cnt) {
             $errors['email'] = $err;
         }
     }
-
     // Construct fake user object to check password policy against required information.
     $tempuser = new stdClass();
     $tempuser->id = 1;
@@ -1082,6 +1080,7 @@ function signup_validate_data($data, $files, $father, $cnt) {
  */
 function signup_setup_new_user($user) {
     global $CFG;
+
     $user->confirmed   = 0;
     $user->lang        = current_language();
     $user->firstaccess = 0;
