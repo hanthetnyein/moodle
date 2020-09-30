@@ -1000,10 +1000,9 @@ function signup_captcha_enabled() {
 function signup_validate_data($data, $files, $father, $cnt) {
     global $CFG, $DB;
 
-    
     $errors = array();
     $authplugin = get_auth_plugin($CFG->registerauth);
- 
+
     if ($data['username'] == $data['password']) {
 	$errors['password'] = 'အမည်နှင့် အဖေအမည် တူလို့မရပါ။';
     }
@@ -1027,30 +1026,34 @@ function signup_validate_data($data, $files, $father, $cnt) {
         }
     }
     }
-	
+
     // Check if user exists in external db.
     // TODO: maybe we should check all enabled plugins instead.
     if ($authplugin->user_exists($data['username'])) {
         //$errors['username'] = get_string('usernameexists');
     }
 
-    else if (empty($CFG->allowaccountssameemail)) {
-        // Make a case-insensitive query for the given email address.
-        $select = $DB->sql_equal('email', ':email', false) . ' AND mnethostid = :mnethostid';
+    if (! validate_email($data['email'])) {
+        $errors['email'] = get_string('invalidemail');
+
+    } else if (empty($CFG->allowaccountssameemail)) {
+        // Emails in Moodle as case-insensitive and accents-sensitive. Such a combination can lead to very slow queries
+        // on some DBs such as MySQL. So we first get the list of candidate users in a subselect via more effective
+        // accent-insensitive query that can make use of the index and only then we search within that limited subset.
+        $sql = "SELECT 'x'
+                  FROM {user}
+                 WHERE " . $DB->sql_equal('email', ':email1', false, true) . "
+                   AND id IN (SELECT id
+                                FROM {user}
+                               WHERE " . $DB->sql_equal('email', ':email2', false, false) . "
+                                 AND mnethostid = :mnethostid)";
+
         $params = array(
-            'email' => $data['email'],
+            'email1' => $data['email'],
+            'email2' => $data['email'],
             'mnethostid' => $CFG->mnet_localhost_id,
         );
-        
-    }
-    else if (core_text::strtolower($data['email2']) != core_text::strtolower($data['email'])) {
-        $errors['email2'] = get_string('invalidemail');
-    }
-    if (!isset($errors['email'])) {
-        if ($err = email_is_not_allowed($data['email'])) {
-            $errors['email'] = $err;
-        }
-    }
+
 
     // Construct fake user object to check password policy against required information.
     $tempuser = new stdClass();
@@ -1082,6 +1085,7 @@ function signup_validate_data($data, $files, $father, $cnt) {
  */
 function signup_setup_new_user($user) {
     global $CFG;
+
     $user->confirmed   = 0;
     $user->lang        = current_language();
     $user->firstaccess = 0;
