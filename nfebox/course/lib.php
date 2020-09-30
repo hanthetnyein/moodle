@@ -1,278 +1,3 @@
-<style>
-@media only screen and (min-width: 1603px) {
-#course_padding {
-	padding-left:65px;
-	padding-right:65px;
-}
-}
-@media only screen and (min-width: 1472px) and (max-width: 1602px) {
-#course_padding {
-	padding-left:45px;
-	padding-right:45px;
-}
-}
-@media only screen and (min-width: 1400px) and (max-width: 1471px) {
-#course_padding {
-	padding-left:35px;
-	padding-right:35px;
-}
-}
-@media only screen and (min-width: 1292px) and (max-width: 1399px) {
-#course_padding {
-	padding-left:25px;
-	padding-right:25px;
-}
-}
-@media only screen and (min-width: 1210px) and (max-width: 1291px) {
-#course_padding {
-	padding-left:15px;
-	padding-right:15px;
-}
-}
-@media only screen and (min-width: 1152px) and (max-width: 1209px) {
-#course_padding {
-	padding-left:10px;
-	padding-right:10px;
-}
-}
-@media only screen and (min-width: 1128px) and (max-width: 1151px) {
-#course_padding {
-	padding-left:10px;
-	padding-right:10px;
-}
-}
-@media only screen and (min-width: 1114px) and (max-width: 1127px) {
-#course_padding {
-	padding-left:5px;
-	padding-right:5px;
-}
-}
-@media only screen and (min-width: 1066px) and (max-width: 1113px) {
-#course_padding {
-	flex: 0 0 50%;
-    	max-width: 50%;
-	padding-left:60px;
-	padding-right:60px;
-}
-}
-@media only screen and (min-width: 1000px) and (max-width: 1065px) {
-#course_padding {
-	flex: 0 0 50%;
-    	max-width: 50%;
-	padding-left:40px;
-	padding-right:40px;
-}
-}
-@media only screen and (min-width: 953px) and (max-width: 999px) {
-#course_padding {
-	flex: 0 0 50%;
-    	max-width: 50%;
-	padding-left:30px;
-	padding-right:30px;
-}
-}
-@media only screen and (min-width: 912px) and (max-width: 952px) {
-#course_padding {
-	flex: 0 0 50%;
-    	max-width: 50%;
-	padding-left:20px;
-	padding-right:20px;
-}
-}
-@media only screen and (min-width: 856px) and (max-width: 911px) {
-#course_padding {
-	flex: 0 0 50%;
-    	max-width: 50%;
-	padding-left:10px;
-	padding-right:10px;
-}
-}
-@media only screen and (min-width: 816px) and (max-width: 855px) {
-#course_padding {
-	flex: 0 0 50%;
-    	max-width: 50%;
-	padding-left:5px;
-	padding-right:5px;
-}
-}
-@media only screen and (min-width: 766px) and (max-width: 815px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:105px;
-	padding-right:105px;
-}
-}
-@media only screen and (min-width: 752px) and (max-width: 765px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:100px;
-	padding-right:100px;
-}
-}
-@media only screen and (min-width: 728px) and (max-width: 751px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:95px;
-	padding-right:95px;
-}
-}
-@media only screen and (min-width: 718px) and (max-width: 727px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:90px;
-	padding-right:90px;
-}
-}
-@media only screen and (min-width: 690px) and (max-width: 717px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:80px;
-	padding-right:80px;
-}
-}
-@media only screen and (min-width: 658px) and (max-width: 689px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:70px;
-	padding-right:70px;
-}
-}
-@media only screen and (min-width: 635px) and (max-width: 657px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:60px;
-	padding-right:60px;
-}
-}
-@media only screen and (min-width: 620px) and (max-width: 634px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:50px;
-	padding-right:50px;
-}
-}
-@media only screen and (min-width: 610px) and (max-width: 619px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:40px;
-	padding-right:40px;
-}
-}
-@media only screen and (min-width: 598px) and (max-width: 609px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:35px;
-	padding-right:35px;
-}
-}
-@media only screen and (min-width: 580px) and (max-width: 597px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:20px;
-	padding-right:20px;
-}
-}
-@media only screen and (min-width: 578px) and (max-width: 579px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:10px;
-	padding-right:10px;
-}
-}
-@media only screen and (min-width: 576px) and (max-width: 577px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:60px;
-	padding-right:60px;
-}
-}
-@media only screen and (min-width: 549px) and (max-width: 575px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:75px;
-	padding-right:75px;
-}
-}
-@media only screen and (min-width: 530px) and (max-width: 548px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:65px;
-	padding-right:65px;
-}
-}
-@media only screen and (min-width: 500px) and (max-width: 529px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:55px;
-	padding-right:55px;
-}
-}
-@media only screen and (min-width: 472px) and (max-width: 499px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:45px;
-	padding-right:45px;
-}
-}
-@media only screen and (min-width: 456px) and (max-width: 471px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:35px;
-	padding-right:35px;
-}
-}
-@media only screen and (min-width: 427px) and (max-width: 455px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:25px;
-	padding-right:25px;
-}
-}
-@media only screen and (min-width: 412px) and (max-width: 426px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:15px;
-	padding-right:15px;
-}
-}
-@media only screen and (min-width: 404px) and (max-width: 412px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:10px;
-	padding-right:10px;
-}
-}
-media only screen and (min-width: 300px) and (max-width: 403px) {
-#course_padding {
-	flex: 0 0 100%;
-    	max-width: 100%;
-	padding-left:0;
-	padding-right:0;
-	margin: 0;
-}
-}
-</style>
 <?php
 // This file is part of Moodle - http://moodle.org/
 //
@@ -897,6 +622,102 @@ function set_section_visible($courseid, $sectionnumber, $visibility) {
 }
 
 /**
+ * Retrieve all metadata for the requested modules
+ *
+ * @param object $course The Course
+ * @param array $modnames An array containing the list of modules and their
+ * names
+ * @param int $sectionreturn The section to return to
+ * @return array A list of stdClass objects containing metadata about each
+ * module
+ */
+function get_module_metadata($course, $modnames, $sectionreturn = null) {
+    global $OUTPUT;
+
+    // get_module_metadata will be called once per section on the page and courses may show
+    // different modules to one another
+    static $modlist = array();
+    if (!isset($modlist[$course->id])) {
+        $modlist[$course->id] = array();
+    }
+
+    $return = array();
+    $urlbase = new moodle_url('/course/mod.php', array('id' => $course->id, 'sesskey' => sesskey()));
+    if ($sectionreturn !== null) {
+        $urlbase->param('sr', $sectionreturn);
+    }
+    foreach($modnames as $modname => $modnamestr) {
+        if (!course_allowed_module($course, $modname)) {
+            continue;
+        }
+        if (isset($modlist[$course->id][$modname])) {
+            // This module is already cached
+            $return += $modlist[$course->id][$modname];
+            continue;
+        }
+        $modlist[$course->id][$modname] = array();
+
+        // Create an object for a default representation of this module type in the activity chooser. It will be used
+        // if module does not implement callback get_shortcuts() and it will also be passed to the callback if it exists.
+        $defaultmodule = new stdClass();
+        $defaultmodule->title = $modnamestr;
+        $defaultmodule->name = $modname;
+        $defaultmodule->link = new moodle_url($urlbase, array('add' => $modname));
+        $defaultmodule->icon = $OUTPUT->pix_icon('icon', '', $defaultmodule->name, array('class' => 'icon'));
+        $sm = get_string_manager();
+        if ($sm->string_exists('modulename_help', $modname)) {
+            $defaultmodule->help = get_string('modulename_help', $modname);
+            if ($sm->string_exists('modulename_link', $modname)) {  // Link to further info in Moodle docs.
+                $link = get_string('modulename_link', $modname);
+                $linktext = get_string('morehelp');
+                $defaultmodule->help .= html_writer::tag('div',
+                    $OUTPUT->doc_link($link, $linktext, true), array('class' => 'helpdoclink'));
+            }
+        }
+        $defaultmodule->archetype = plugin_supports('mod', $modname, FEATURE_MOD_ARCHETYPE, MOD_ARCHETYPE_OTHER);
+
+        // Each module can implement callback modulename_get_shortcuts() in its lib.php and return the list
+        // of elements to be added to activity chooser.
+        $items = component_callback($modname, 'get_shortcuts', array($defaultmodule), null);
+        if ($items !== null) {
+            foreach ($items as $item) {
+                // Add all items to the return array. All items must have different links, use them as a key in the return array.
+                if (!isset($item->archetype)) {
+                    $item->archetype = $defaultmodule->archetype;
+                }
+                if (!isset($item->icon)) {
+                    $item->icon = $defaultmodule->icon;
+                }
+                // If plugin returned the only one item with the same link as default item - cache it as $modname,
+                // otherwise append the link url to the module name.
+                $item->name = (count($items) == 1 &&
+                    $item->link->out() === $defaultmodule->link->out()) ? $modname : $modname . ':' . $item->link;
+
+                // If the module provides the helptext property, append it to the help text to match the look and feel
+                // of the default course modules.
+                if (isset($item->help) && isset($item->helplink)) {
+                    $linktext = get_string('morehelp');
+                    $item->help .= html_writer::tag('div',
+                        $OUTPUT->doc_link($item->helplink, $linktext, true), array('class' => 'helpdoclink'));
+                }
+                $modlist[$course->id][$modname][$item->name] = $item;
+            }
+            $return += $modlist[$course->id][$modname];
+            // If get_shortcuts() callback is defined, the default module action is not added.
+            // It is a responsibility of the callback to add it to the return value unless it is not needed.
+            continue;
+        }
+
+        // The callback get_shortcuts() was not found, use the default item for the activity chooser.
+        $modlist[$course->id][$modname][$modname] = $defaultmodule;
+        $return[$modname] = $defaultmodule;
+    }
+
+    core_collator::asort_objects_by_property($return, 'title');
+    return $return;
+}
+
+/**
  * Return the course category context for the category with id $categoryid, except
  * that if $categoryid is 0, return the system context.
  *
@@ -912,14 +733,20 @@ function get_category_or_system_context($categoryid) {
 }
 
 /**
- * Returns the list of full course categories to be used in html_writer::select()
+ * Returns full course categories trees to be used in html_writer::select()
  *
- * Calls {@see core_course_category::make_categories_list()} to build the list.
+ * Calls {@link core_course_category::make_categories_list()} to build the tree and
+ * adds whitespace to denote nesting
  *
  * @return array array mapping course category id to the display name
  */
 function make_categories_options() {
-    return core_course_category::make_categories_list('', 0, ' / ');
+    $cats = core_course_category::make_categories_list('', 0, ' / ');
+    foreach ($cats as $key => $value) {
+        // Prefix the value with the number of spaces equal to category depth (number of separators in the value).
+        $cats[$key] = str_repeat('&nbsp;', substr_count($value, ' / ')). $value;
+    }
+    return $cats;
 }
 
 /**
@@ -1323,6 +1150,7 @@ function course_delete_module($cmid, $async = false) {
         }
     }
 
+    // Delete activity context questions and question categories.
     question_delete_activity($cm);
 
     // Call the delete_instance function, if it returns false throw an exception.
@@ -2325,12 +2153,9 @@ function course_format_name ($course,$max=100) {
  * Is the user allowed to add this type of module to this course?
  * @param object $course the course settings. Only $course->id is used.
  * @param string $modname the module name. E.g. 'forum' or 'quiz'.
- * @param \stdClass $user the user to check, defaults to the global user if not provided.
  * @return bool whether the current user is allowed to add this type of module to this course.
  */
-function course_allowed_module($course, $modname, \stdClass $user = null) {
-    global $USER;
-    $user = $user ?? $USER;
+function course_allowed_module($course, $modname) {
     if (is_numeric($modname)) {
         throw new coding_exception('Function course_allowed_module no longer
                 supports numeric module ids. Please update your code to pass the module name.');
@@ -2352,7 +2177,7 @@ function course_allowed_module($course, $modname, \stdClass $user = null) {
     }
 
     $coursecontext = context_course::instance($course->id);
-    return has_capability($capability, $coursecontext, $user);
+    return has_capability($capability, $coursecontext);
 }
 
 /**
@@ -2384,7 +2209,6 @@ function move_courses($courseids, $categoryid) {
     foreach ($dbcourses as $dbcourse) {
         $course = new stdClass();
         $course->id = $dbcourse->id;
-        $course->timemodified = time();
         $course->category  = $category->id;
         $course->sortorder = $category->sortorder + MAX_COURSES_IN_CATEGORY - $i++;
         if ($category->visible == 0) {
@@ -2741,7 +2565,7 @@ function update_course($data, $editoroptions = NULL) {
                 // The summary might be very long, we don't wan't to fill up the log record with the full text.
                 $updatedfields[$field] = '(updated)';
             }
-        } else if ($field == 'tags' && isset($data->tags)) {
+        } else if ($field == 'tags' && !empty($CFG->usetags)) {
             // Tags might not have the same array keys, just check the values.
             if (array_values($data->$field) !== array_values($value)) {
                 $updatedfields[$field] = $data->$field;
@@ -2878,68 +2702,31 @@ function update_course($data, $editoroptions = NULL) {
 }
 
 /**
- * Calculate the average number of enrolled participants per course.
- *
- * This is intended for statistics purposes during the site registration. Only visible courses are taken into account.
- * Front page enrolments are excluded.
- *
- * @param bool $onlyactive Consider only active enrolments in enabled plugins and obey the enrolment time restrictions.
- * @param int $lastloginsince If specified, count only users who logged in after this timestamp.
- * @return float
+ * Average number of participants
+ * @return integer
  */
-function average_number_of_participants(bool $onlyactive = false, int $lastloginsince = null): float {
-    global $DB;
+function average_number_of_participants() {
+    global $DB, $SITE;
 
-    $params = [
-        'siteid' => SITEID,
-    ];
-
-    $sql = "SELECT DISTINCT ue.userid, e.courseid
-              FROM {user_enrolments} ue
-              JOIN {enrol} e ON e.id = ue.enrolid
-              JOIN {course} c ON c.id = e.courseid ";
-
-    if ($onlyactive || $lastloginsince) {
-        $sql .= "JOIN {user} u ON u.id = ue.userid ";
-    }
-
-    $sql .= "WHERE e.courseid <> :siteid
-               AND c.visible = 1 ";
-
-    if ($onlyactive) {
-        $sql .= "AND ue.status = :active
-                 AND e.status = :enabled
-                 AND ue.timestart < :now1
-                 AND (ue.timeend = 0 OR ue.timeend > :now2) ";
-
-        // Same as in the enrollib - the rounding should help caching in the database.
-        $now = round(time(), -2);
-
-        $params += [
-            'active' => ENROL_USER_ACTIVE,
-            'enabled' => ENROL_INSTANCE_ENABLED,
-            'now1' => $now,
-            'now2' => $now,
-        ];
-    }
-
-    if ($lastloginsince) {
-        $sql .= "AND u.lastlogin > :lastlogin ";
-        $params['lastlogin'] = $lastloginsince;
-    }
-
-    $sql = "SELECT COUNT(*)
-              FROM ($sql) total";
-
+    //count total of enrolments for visible course (except front page)
+    $sql = 'SELECT COUNT(*) FROM (
+        SELECT DISTINCT ue.userid, e.courseid
+        FROM {user_enrolments} ue, {enrol} e, {course} c
+        WHERE ue.enrolid = e.id
+            AND e.courseid <> :siteid
+            AND c.id = e.courseid
+            AND c.visible = 1) total';
+    $params = array('siteid' => $SITE->id);
     $enrolmenttotal = $DB->count_records_sql($sql, $params);
 
-    // Get the number of visible courses (exclude the front page).
-    $coursetotal = $DB->count_records('course', ['visible' => 1]);
-    $coursetotal = $coursetotal - 1;
 
+    //count total of visible courses (minus front page)
+    $coursetotal = $DB->count_records('course', array('visible' => 1));
+    $coursetotal = $coursetotal - 1 ;
+
+    //average of enrolment
     if (empty($coursetotal)) {
         $participantaverage = 0;
-
     } else {
         $participantaverage = $enrolmenttotal / $coursetotal;
     }
@@ -4294,6 +4081,7 @@ function course_get_user_administration_options($course, $context) {
     $isfrontpage = $course->id == SITEID;
     $completionenabled = $CFG->enablecompletion && $course->enablecompletion;
     $hascompletiontabs = count(core_completion\manager::get_available_completion_tabs($course, $context)) > 0;
+
     $options = new stdClass;
     $options->update = has_capability('moodle/course:update', $context);
     $options->editcompletion = $CFG->enablecompletion &&
@@ -4304,7 +4092,6 @@ function course_get_user_administration_options($course, $context) {
     $options->reports = has_capability('moodle/site:viewreports', $context);
     $options->backup = has_capability('moodle/backup:backupcourse', $context);
     $options->restore = has_capability('moodle/restore:restorecourse', $context);
-    $options->copy = \core_course\management\helper::can_copy_course($course->id);
     $options->files = ($course->legacyfiles == 2 && has_capability('moodle/course:managefiles', $context));
 
     if (!$isfrontpage) {
@@ -5209,41 +4996,4 @@ function course_get_course_dates_for_user_ids(stdClass $course, array $userids):
  */
 function course_get_course_dates_for_user_id(stdClass $course, int $userid): array {
     return (course_get_course_dates_for_user_ids($course, [$userid]))[$userid];
-}
-
-/**
- * Renders the course copy form for the modal on the course management screen.
- *
- * @param array $args
- * @return string $o Form HTML.
- */
-function course_output_fragment_new_base_form($args) {
-
-    $serialiseddata = json_decode($args['jsonformdata'], true);
-    $formdata = [];
-    if (!empty($serialiseddata)) {
-        parse_str($serialiseddata, $formdata);
-    }
-
-    $context = context_course::instance($args['courseid']);
-    $copycaps = \core_course\management\helper::get_course_copy_capabilities();
-    require_all_capabilities($copycaps, $context);
-
-    $course = get_course($args['courseid']);
-    $mform = new \core_backup\output\copy_form(
-        null,
-        array('course' => $course, 'returnto' => '', 'returnurl' => ''),
-        'post', '', ['class' => 'ignoredirty'], true, $formdata);
-
-    if (!empty($serialiseddata)) {
-        // If we were passed non-empty form data we want the mform to call validation functions and show errors.
-        $mform->is_validated();
-    }
-
-    ob_start();
-    $mform->display();
-    $o = ob_get_contents();
-    ob_end_clean();
-
-    return $o;
 }
