@@ -57,7 +57,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
             $rcourseids = array_keys($courses);
             $acourseids = array_chunk($rcourseids, 3);
             if ($PAGE->theme->settings->coursetilestyle == 8) {
-                $acourseids = array_chunk($rcourseids, 2);
+                //$acourseids = array_chunk($rcourseids, 2);
             }
             if ($id != 0) {
                 $newcourse = get_string('availablecourses');
@@ -78,7 +78,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
                 </div>';
             if (count($rcourseids) > 0) {
                 foreach ($acourseids as $courseids) {
-                    $content .= '<div class="container-fluid"> <div class="row">';
+                    $content .= '<div id="container-fluid" class="container-fluid"> <div class="row">';
                     $rowcontent = '';
                     foreach ($courseids as $courseid) {
                         $course = get_course($courseid);
@@ -495,7 +495,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
                                 $tooltiptext = '';
                             }
                             $rowcontent .= '
-                                <div class="col-lg-6">
+                                <div id="course_padding" class="col-lg-4">
                                 <div class="tilecontainer">'; // Course Form
                             $rowcontent .= html_writer::start_tag('div', array(
                                 'class' => $course->visible ? 'coursevisible' : 'coursedimmed3'
