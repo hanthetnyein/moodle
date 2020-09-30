@@ -1382,7 +1382,7 @@ class core_course_renderer extends plugin_renderer_base {
         }
 
         // display list of subcategories
-        $content = html_writer::start_tag('div', array('class' => 'subcategories'));
+        $content = html_writer::start_tag('div class="row"', array('class' => 'subcategories'));
 
         if (!empty($pagingbar)) {
             $content .= $pagingbar;
@@ -1644,9 +1644,6 @@ class core_course_renderer extends plugin_renderer_base {
 
         // Print current category description
         $chelper = new coursecat_helper();
-        if ($description = $chelper->get_category_formatted_description($coursecat)) {
-            $output .= $this->box($description, array('class' => 'generalbox info'));
-        }
 
         // Prepare parameters for courses and categories lists in the tree
         $chelper->set_show_courses(self::COURSECAT_SHOW_COURSES_AUTO)
