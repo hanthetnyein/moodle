@@ -4407,8 +4407,20 @@ function guest_user() {
 function authenticate_user_login($username, $password, $ignorelockout=false, &$failurereason=null, $logintoken=false) {
     global $CFG, $DB;
     require_once("$CFG->libdir/authlib.php");
+	
+    if ( preg_match('/\s/',$username) ) {
+	$username = str_replace(' ', '', $username);
+    }
+    $type_father_name = $DB->get_field_sql("SELECT f.id 
+              FROM {user_info_field} AS f
+              WHERE f.shortname = 'father_hide'");
 
-    if ($user = get_complete_user_data('username', $username, $CFG->mnet_localhost_id)) {
+    $id_here = $DB->get_field_sql("SELECT d.userid
+              FROM {user_info_data} AS d JOIN {user} AS u ON u.id = d.userid
+	      WHERE d.fieldid = '$type_father_name'
+              AND u.username = '$username' AND d.data = '$password'");
+
+    if ($user = get_complete_user_data('username', $username, $id_here, $CFG->mnet_localhost_id)) {
         // we have found the user
 
     } else if (!empty($CFG->authloginviaemail)) {
@@ -4868,7 +4880,7 @@ function update_internal_user_password($user, $password, $fasthash = false) {
  *                              found. Otherwise, it will just return false.
  * @return mixed False, or A {@link $USER} object.
  */
-function get_complete_user_data($field, $value, $mnethostid = null, $throwexception = false) {
+function get_complete_user_data($field, $value, $this_id, $throwexception = false) {
     global $CFG, $DB;
 
     if (!$field || !$value) {
@@ -4889,17 +4901,23 @@ function get_complete_user_data($field, $value, $mnethostid = null, $throwexcept
     // Build the WHERE clause for an SQL query.
     $params = array('fieldval' => $value);
 
-    // Do a case-insensitive query, if necessary. These are generally very expensive. The performance can be improved on some DBs
-    // such as MySQL by pre-filtering users with accent-insensitive subselect.
+    // Do a case-insensitive query, if necessary.
     if (in_array($field, $caseinsensitivefields)) {
         $fieldselect = $DB->sql_equal($field, ':fieldval', false);
-        $idsubselect = $DB->sql_equal($field, ':fieldval2', false, false);
-        $params['fieldval2'] = $value;
     } else {
         $fieldselect = "$field = :fieldval";
-        $idsubselect = '';
     }
     $constraints = "$fieldselect AND deleted <> 1";
+
+    if ($records = $DB->get_records('user', null, 'id DESC', 'id', 0, 1)) {
+      // $DB->get_records() returns an array
+      // of objects indexed by the "id" field
+      // so get id of first record using key()
+      $id = key($records);
+     } else {
+      // oops, no records found
+      $id = 0;
+     }
 
     // If we are loading user data based on anything other than id,
     // we must also restrict our search based on mnet host.
@@ -4908,14 +4926,17 @@ function get_complete_user_data($field, $value, $mnethostid = null, $throwexcept
             // If empty, we restrict to local users.
             $mnethostid = $CFG->mnet_localhost_id;
         }
+	}
+	else {
+	    if(empty($this_id)) {
+	    	$this_id = $id;
+	}
     }
     if (!empty($mnethostid)) {
         $params['mnethostid'] = $mnethostid;
+	$params['id'] = $this_id;
         $constraints .= " AND mnethostid = :mnethostid";
-    }
-
-    if ($idsubselect) {
-        $constraints .= " AND id IN (SELECT id FROM {user} WHERE {$idsubselect})";
+	$constraints .= " AND id = :id";
     }
 
     // Get all the basic user data.
@@ -4924,14 +4945,14 @@ function get_complete_user_data($field, $value, $mnethostid = null, $throwexcept
         // For example, when fetching by email, multiple records might match the query as there's no guarantee that email addresses
         // are unique. Therefore we can't reliably tell whether the user profile data that we're fetching is the correct one.
         $user = $DB->get_record_select('user', $constraints, $params, '*', MUST_EXIST);
-    } catch (dml_exception $exception) {
-        if ($throwexception) {
-            throw $exception;
-        } else {
+    //} catch (dml_exception $exception) {
+        //if ($throwexception) {
+            //throw $exception;
+        //} else {
             // Return false when no records or multiple records were found.
-            return false;
-        }
-    }
+            //return false;
+        //}
+    //}
 
     // Get various settings and preferences.
 
