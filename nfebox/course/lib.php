@@ -1,3 +1,324 @@
+<style>
+@media only screen and (min-width: 1603px) {
+#course_padding {
+	padding-left:65px;
+	padding-right:65px;
+}
+}
+@media only screen and (min-width: 1472px) and (max-width: 1602px) {
+#course_padding {
+	padding-left:45px;
+	padding-right:45px;
+}
+}
+@media only screen and (min-width: 1400px) and (max-width: 1471px) {
+#course_padding {
+	padding-left:35px;
+	padding-right:35px;
+}
+}
+@media only screen and (min-width: 1292px) and (max-width: 1399px) {
+#course_padding {
+	padding-left:25px;
+	padding-right:25px;
+}
+}
+@media only screen and (min-width: 1210px) and (max-width: 1291px) {
+#course_padding {
+	padding-left:15px;
+	padding-right:15px;
+}
+}
+@media only screen and (min-width: 1152px) and (max-width: 1209px) {
+#course_padding {
+	padding-left:10px;
+	padding-right:10px;
+}
+}
+@media only screen and (min-width: 1128px) and (max-width: 1151px) {
+#course_padding {
+	padding-left:10px;
+	padding-right:10px;
+}
+}
+@media only screen and (min-width: 1114px) and (max-width: 1127px) {
+#course_padding {
+	padding-left:5px;
+	padding-right:5px;
+}
+}
+@media only screen and (min-width: 1066px) and (max-width: 1113px) {
+#course_padding {
+	flex: 0 0 50%;
+    	max-width: 50%;
+	padding-left:60px;
+	padding-right:60px;
+	padding-top:0;
+}
+}
+@media only screen and (min-width: 1000px) and (max-width: 1065px) {
+#course_padding {
+	flex: 0 0 50%;
+    	max-width: 50%;
+	padding-left:40px;
+	padding-right:40px;
+}
+}
+@media only screen and (min-width: 953px) and (max-width: 999px) {
+#course_padding {
+	flex: 0 0 50%;
+    	max-width: 50%;
+	padding-left:30px;
+	padding-right:30px;
+}
+}
+@media only screen and (min-width: 912px) and (max-width: 952px) {
+#course_padding {
+	flex: 0 0 50%;
+    	max-width: 50%;
+	padding-left:20px;
+	padding-right:20px;
+}
+}
+@media only screen and (min-width: 856px) and (max-width: 911px) {
+#course_padding {
+	flex: 0 0 50%;
+    	max-width: 50%;
+	padding-left:10px;
+	padding-right:10px;
+}
+}
+@media only screen and (min-width: 816px) and (max-width: 855px) {
+#course_padding {
+	flex: 0 0 50%;
+    	max-width: 50%;
+	padding-left:5px;
+	padding-right:5px;
+}
+}
+@media only screen and (min-width: 766px) and (max-width: 815px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding-left:105px;
+	padding-right:105px;
+}
+}
+@media only screen and (min-width: 752px) and (max-width: 765px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding-left:100px;
+	padding-right:100px;
+}
+}
+@media only screen and (min-width: 728px) and (max-width: 751px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding-left:95px;
+	padding-right:95px;
+}
+}
+@media only screen and (min-width: 718px) and (max-width: 727px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding-left:90px;
+	padding-right:90px;
+}
+}
+@media only screen and (min-width: 690px) and (max-width: 717px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding-left:80px;
+	padding-right:80px;
+}
+}
+@media only screen and (min-width: 658px) and (max-width: 689px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding-left:70px;
+	padding-right:70px;
+}
+}
+@media only screen and (min-width: 635px) and (max-width: 657px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding-left:60px;
+	padding-right:60px;
+}
+}
+@media only screen and (min-width: 620px) and (max-width: 634px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding-left:50px;
+	padding-right:50px;
+}
+}
+@media only screen and (min-width: 610px) and (max-width: 619px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding-left:40px;
+	padding-right:40px;
+}
+}
+@media only screen and (min-width: 598px) and (max-width: 609px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding-left:35px;
+	padding-right:35px;
+}
+}
+@media only screen and (min-width: 580px) and (max-width: 597px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding-left:20px;
+	padding-right:20px;
+}
+}
+@media only screen and (min-width: 578px) and (max-width: 579px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding-left:10px;
+	padding-right:10px;
+}
+}
+@media only screen and (min-width: 576px) and (max-width: 577px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding-left:60px;
+	padding-right:60px;
+}
+}
+@media only screen and (min-width: 549px) and (max-width: 575px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding-left:75px;
+	padding-right:75px;
+}
+}
+@media only screen and (min-width: 530px) and (max-width: 548px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding-left:65px;
+	padding-right:65px;
+}
+}
+@media only screen and (min-width: 500px) and (max-width: 529px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding-left:55px;
+	padding-right:55px;
+}
+}
+@media only screen and (min-width: 472px) and (max-width: 499px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding-left:45px;
+	padding-right:45px;
+}
+}
+@media only screen and (min-width: 456px) and (max-width: 471px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding-left:35px;
+	padding-right:35px;
+}
+}
+@media only screen and (min-width: 427px) and (max-width: 455px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding-left:20px;
+	padding-right:20px;
+}
+}
+@media only screen and (min-width: 412px) and (max-width: 426px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding-left:15px;
+	padding-right:15px;
+}
+}
+@media only screen and (min-width: 404px) and (max-width: 412px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding-left:10px;
+	padding-right:10px;
+}
+}
+@media only screen and (min-width: 388px) and (max-width: 403px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding:0!important;
+}
+}
+@media only screen and (min-width: 374px) and (max-width: 387px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding:0!important;
+}
+#container-fluid {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+}
+@media only screen and (min-width: 364px) and (max-width: 373px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding:0!important;
+}
+#container-fluid {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+}
+@media only screen and (min-width: 358px) and (max-width: 363px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding:0!important;
+}
+#container-fluid {
+	padding-left: 0;
+	padding-right: 0;
+}
+}
+@media only screen and (min-width: 300px) and (max-width: 357px) {
+#course_padding {
+	flex: 0 0 100%;
+    	max-width: 100%;
+	padding:0!important;
+}
+#container-fluid {
+	padding-left: 0;
+	padding-right: 0;
+}
+.course_category_tree {
+	padding: 0!important;
+}
+}
+</style>
 <?php
 // This file is part of Moodle - http://moodle.org/
 //
@@ -1151,7 +1472,9 @@ function course_delete_module($cmid, $async = false) {
     }
 
     // Delete activity context questions and question categories.
-    question_delete_activity($cm);
+    $showinfo = !defined('AJAX_SCRIPT') || AJAX_SCRIPT == '0';
+
+    question_delete_activity($cm, $showinfo);
 
     // Call the delete_instance function, if it returns false throw an exception.
     if (!$deleteinstancefunction($cm->instance)) {
@@ -2209,6 +2532,7 @@ function move_courses($courseids, $categoryid) {
     foreach ($dbcourses as $dbcourse) {
         $course = new stdClass();
         $course->id = $dbcourse->id;
+        $course->timemodified = time();
         $course->category  = $category->id;
         $course->sortorder = $category->sortorder + MAX_COURSES_IN_CATEGORY - $i++;
         if ($category->visible == 0) {
@@ -2565,7 +2889,7 @@ function update_course($data, $editoroptions = NULL) {
                 // The summary might be very long, we don't wan't to fill up the log record with the full text.
                 $updatedfields[$field] = '(updated)';
             }
-        } else if ($field == 'tags' && !empty($CFG->usetags)) {
+        } else if ($field == 'tags' && isset($data->tags)) {
             // Tags might not have the same array keys, just check the values.
             if (array_values($data->$field) !== array_values($value)) {
                 $updatedfields[$field] = $data->$field;
