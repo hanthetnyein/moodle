@@ -57,7 +57,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
             $rcourseids = array_keys($courses);
             $acourseids = array_chunk($rcourseids, 3);
             if ($PAGE->theme->settings->coursetilestyle == 8) {
-                //$acourseids = array_chunk($rcourseids, 2);
+                $acourseids = array_chunk($rcourseids, 2);
             }
             if ($id != 0) {
                 $newcourse = get_string('availablecourses');
@@ -69,7 +69,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
                 <div id="category-course-list">
                     <div class="courses category-course-list-all">
                     
-                    <div class="class-list" style="display:none;">
+                    <div class="class-list">
                         <h4>' . $newcourse . '</h4>
                     </div>';
             $content = '';
@@ -78,13 +78,13 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
                 </div>';
             if (count($rcourseids) > 0) {
                 foreach ($acourseids as $courseids) {
-                    $content .= '<div id="container-fluid" class="container-fluid"> <div class="row">';
+                    $content .= '<div class="container-fluid"> <div class="row">';
                     $rowcontent = '';
                     foreach ($courseids as $courseid) {
                         $course = get_course($courseid);
                         $trimtitlevalue = $PAGE->theme->settings->trimtitle;
                         $trimsummaryvalue = $PAGE->theme->settings->trimsummary;
-                        $summary = $course->summary;
+                        $summary = theme_fordson_strip_html_tags($course->summary);
                         $summary = format_text(theme_fordson_course_trim_char($summary, $trimsummaryvalue));
                         $trimtitle = format_string(theme_fordson_course_trim_char($course->fullname, $trimtitlevalue));
                         $noimgurl = $OUTPUT->image_url('noimg', 'theme');
@@ -407,7 +407,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
                             $rowcontent .= '
                         <div class="col-md-12">
                             <div class="class-fullbox" style="background-image: url(' . $imgurl . ');background-repeat: no-repeat;background-size:cover; background-position:center;">
-                                <div class="fullbox"> 
+                                <div class="fullbox">
                                 ';
                             $rowcontent .= html_writer::start_tag('div', array(
                                 'class' => $course->visible ? 'coursevisible' : 'coursedimmed3'
@@ -495,24 +495,28 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
                                 $tooltiptext = '';
                             }
                             $rowcontent .= '
-                                <div id="course_padding" class="col-lg-4">
-                                <div class="tilecontainer">'; // Course Form
+                                <div class="col-lg-6">
+                                <div class="tilecontainer">';
                             $rowcontent .= html_writer::start_tag('div', array(
                                 'class' => $course->visible ? 'coursevisible' : 'coursedimmed3'
                             ));
                             $rowcontent .= '<div class="class-box-fp-2col" style="background-image: url(' . $imgurl . ');background-repeat: no-repeat;background-size:cover; background-position:center;">
-                                <a ' . $tooltiptext . ' href="' . $courseurl . '" class="coursestyle3url">'; // Course Background
+                                <a ' . $tooltiptext . ' href="' . $courseurl . '" class="coursestyle3url">';
                             $rowcontent .= '
-                                    <div class="course-title-2col" style="border:1px solid transparent;background:linear-gradient(to right, rgba(255,255,255,0.7), rgba(255,255,255,0.7));">
+                                    <div class="course-title-2col">
                                     
                                     <h4><a href="' . $courseurl . '">' . $trimtitle . '</a></h4>
-                                    <div style="float:left;padding-left:7px;">' . 'အကြောင်းအရာ -' .'</div>'. $summary.'
+                                    ' . $catcontent . '
+                                    ' . $customfieldcontent . '
+                                    </div>
+                                    <div class="course-summary-2col">
+                                    ' . $summary . '
                                     </div>
                                     </div>
                                     </a>
                                 </div>
                                </div> 
-                        </div>'; // Course Title - $trimtitle (English)
+                        </div>';
                         }
                         if ($PAGE->theme->settings->coursetilestyle == 9) {
                             if ($PAGE->theme->settings->titletooltip) {
