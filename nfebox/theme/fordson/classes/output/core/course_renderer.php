@@ -510,7 +510,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
 				    </p></div>
                                     </div>
                                     </div>
-					<span style="position:absolute;bottom:5px;padding:15px;width:100%;text-align:center;font-size:18px;font-weight:bold;font-style:italic;"><a href="' . $courseurl . '">' . $trimtitle . '</a></span>
+					<span style="position:absolute;bottom:0;padding:15px;width:100%;text-align:center;font-size:18px;font-weight:bold;font-style:italic;background:linear-gradient(rgba(255,255,255,0.5),rgba(255,255,255,0.5));"><a href="' . $courseurl . '">' . $trimtitle . '</a></span>
                                     </a>
                                 </div>
                                </div> 
