@@ -503,12 +503,12 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
                             $rowcontent .= '<a href="' . $courseurl . '"><div id="course_bdy" class="class-box-fp-2col" style="background-image: url(' . $imgurl . ');background-repeat: no-repeat;background-size:auto 100%; background-position:center;border-radius:5px;">
                                 <a ' . $tooltiptext . ' href="' . $courseurl . '" class="coursestyle3url">'; // Course Background
                             $rowcontent .= '
-                                    <div class="course-title-2col" style="border:1px solid transparent;background:transparent;">
+                                    <a href="' . $courseurl . '"><div class="course-title-2col" style="border:1px solid transparent;background:transparent;">
                                     
                                     <span style="position:relative;"><a href="' . $courseurl . '">' .''. '</a></span>
-                                    <div style="float:left;padding-left:7px;display:none;">' . 'အကြောင်းအရာ -' .'</div>'. '<div id="summary_show"><p>'.$summary.'
-				    </p></div>
-                                    </div>
+                                    <div style="float:left;padding-left:7px;display:none;">' . 'အကြောင်းအရာ -' .'</div>'. '<a href="' . $courseurl . '"><div id="summary_show"><p>'.$summary.'
+				    </p></div></a>
+                                    </div></a>
                                     </div>
 					<span style="position:absolute;bottom:0;padding:15px;width:100%;text-align:center;font-size:18px;font-weight:bold;font-style:italic;background:linear-gradient(rgba(255,255,255,0.5),rgba(255,255,255,0.5));"><a href="' . $courseurl . '">' . $trimtitle . '</a></span>
                                     </a>
