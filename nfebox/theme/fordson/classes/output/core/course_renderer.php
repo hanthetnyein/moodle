@@ -500,7 +500,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
                             $rowcontent .= html_writer::start_tag('div', array(
                                 'class' => $course->visible ? 'coursevisible' : 'coursedimmed3'
                             ));
-                            $rowcontent .= '<div id="course_bdy" class="class-box-fp-2col" style="background-image: url(' . $imgurl . ');background-repeat: no-repeat;background-size:auto 100%; background-position:center;border-radius:5px;">
+                            $rowcontent .= '<a href="' . $courseurl . '"><div id="course_bdy" class="class-box-fp-2col" style="background-image: url(' . $imgurl . ');background-repeat: no-repeat;background-size:auto 100%; background-position:center;border-radius:5px;">
                                 <a ' . $tooltiptext . ' href="' . $courseurl . '" class="coursestyle3url">'; // Course Background
                             $rowcontent .= '
                                     <div class="course-title-2col" style="border:1px solid transparent;background:transparent;">
@@ -514,7 +514,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
                                     </a>
                                 </div>
                                </div> 
-                        </div>'; // Course Title - $trimtitle (English)
+                        </div></a>'; // Course Title - $trimtitle (English)
                         }
                         if ($PAGE->theme->settings->coursetilestyle == 9) {
                             if ($PAGE->theme->settings->titletooltip) {
