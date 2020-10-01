@@ -85,7 +85,7 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
                         $trimtitlevalue = $PAGE->theme->settings->trimtitle;
                         $trimsummaryvalue = $PAGE->theme->settings->trimsummary;
                         $summary = $course->summary;
-                        $summary = format_text(theme_fordson_course_trim_char($summary, $trimsummaryvalue));
+                        //$summary = format_text(theme_fordson_course_trim_char($summary, $trimsummaryvalue));
                         $trimtitle = format_string(theme_fordson_course_trim_char($course->fullname, $trimtitlevalue));
                         $noimgurl = $OUTPUT->image_url('noimg', 'theme');
                         $courseurl = new moodle_url('/course/view.php', array(
@@ -500,15 +500,17 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
                             $rowcontent .= html_writer::start_tag('div', array(
                                 'class' => $course->visible ? 'coursevisible' : 'coursedimmed3'
                             ));
-                            $rowcontent .= '<div class="class-box-fp-2col" style="background-image: url(' . $imgurl . ');background-repeat: no-repeat;background-size:cover; background-position:center;">
+                            $rowcontent .= '<div id="course_bdy" class="class-box-fp-2col" style="background-image: url(' . $imgurl . ');background-repeat: no-repeat;background-size:auto 100%; background-position:center;border-radius:5px;">
                                 <a ' . $tooltiptext . ' href="' . $courseurl . '" class="coursestyle3url">'; // Course Background
                             $rowcontent .= '
-                                    <div class="course-title-2col" style="border:1px solid transparent;background:linear-gradient(to right, rgba(255,255,255,0.7), rgba(255,255,255,0.7));">
+                                    <div class="course-title-2col" style="border:1px solid transparent;background:transparent;">
                                     
-                                    <h4><a href="' . $courseurl . '">' . $trimtitle . '</a></h4>
-                                    <div style="float:left;padding-left:7px;">' . 'အကြောင်းအရာ -' .'</div>'. $summary.'
+                                    <span style="position:relative;"><a href="' . $courseurl . '">' .''. '</a></span>
+                                    <div style="float:left;padding-left:7px;display:none;">' . 'အကြောင်းအရာ -' .'</div>'. '<div id="summary_show"><p>'.$summary.'
+				    </p></div>
                                     </div>
                                     </div>
+					<span style="position:absolute;bottom:5px;padding:15px;width:100%;text-align:center;font-size:18px;font-weight:bold;font-style:italic;"><a href="' . $courseurl . '">' . $trimtitle . '</a></span>
                                     </a>
                                 </div>
                                </div> 
