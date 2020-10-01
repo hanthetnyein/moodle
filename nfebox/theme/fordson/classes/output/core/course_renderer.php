@@ -514,7 +514,8 @@ if ($PAGE->theme->settings->coursetilestyle < 10) {
                                     </a>
                                 </div>
                                </div> 
-                        </div></a>'; // Course Title - $trimtitle (English)
+                        	</div>
+				</a>'; // Course Title - $trimtitle (English)
                         }
                         if ($PAGE->theme->settings->coursetilestyle == 9) {
                             if ($PAGE->theme->settings->titletooltip) {
