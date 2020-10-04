@@ -1,97 +1,171 @@
 <style>
-.usertour {
-	display:none;
+.top_bottom_align {
+    position:relative;
+    bottom:-25%;
 }
-
-@media only screen and (min-width: 403px) and (max-width: 768px) {
-
-.col-xs-7 {
-    flex: 0 0 60%;
-    max-width: 60%;
+.align {
+    position:relative;
+    bottom:-2px;
 }
-.col-xs-5 {
-    flex: 0 0 40%;
-    max-width: 40%;
+@media only screen and (min-width: 817px) {
+    .align {
+         justify-content:center;
+    }
+    
+}
+@media only screen and (max-width: 816px) {
+	
+.col-medium-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.middle-left {
+    position:relative;
+    right:0;
+}
+.top_bottom_align {
+    bottom:-49%;
+}
+.align {
+    top:-2px;
+}
+.changeorder {
+    order: 2;
 }
 }
-@media only screen and (max-width: 575px) {
-    .col-xs-7 {
-	padding-left:50px!important;
+@media only screen and (min-width: 607px) and (max-width: 816px) {
+.left {
+    justify-content:flex-start;
+    position:relative;
+    left: 50px;
+    top: 0.5px;
+}
+.center {
+    justify-content:flex-end;
+    position:relative;
+    right: 10px;
+}
+}
+@media only screen and (min-width: 405px) and (max-width: 606px) {
+.left {
+    justify-content:flex-start;
+    position:relative;
+    left: 30px;
+    top: 0.5px;
+}
+.center {
+    justify-content:flex-end;
+    position:relative;
+    right: 3px;
 }
 }
 @media only screen and (max-width: 404px) {
-	
+
 .col-xxs-12 {
     flex: 0 0 100%;
     max-width: 100%;
 }
-.col-xs-5 {
-    padding-left:20px!important;
+.align {
+    top: -4px;
 }
-.col-xs-7 {
-    padding-left:24px!important;
+.middle {
+    top: -3px;
 }
 .socials {
     padding:0;
 }
-.footercontact {
-    margin-bottom:0;
-}
-
-.socials .fa-stack-2x {
-    width: 25px;
-    height: 25px;
-    display: none;
-}
-.socials .fa-stack-1x {
-    height: 25px;
-    width: 25px;
-    line-height: 26px;
-}
-
-#fbtext {
-    position: absolute;
-}
-#logo_wrapper {
-     	padding-right:0;
+#hight_down {
+    height:20px;
 }
 }
-
-@media only screen and (min-width: 404px) {
-	#right_links {
-	padding: 0;
+@media only screen and (min-width: 394px) and (max-width: 404px) {
+    .left li,.center li {
+	margin-left: 55px;
+}
+    .right li {
+	margin-left: -35px;
 }
 }
-
-@media only screen and (min-width: 767px) {
-
-.custom-col-6 {
-	flex: 0 0 50%;
-        max-width: 50%;
-	display:flex;
-  	align-items: center;
+@media only screen and (min-width: 381px) and (max-width: 393px) {
+    .left li,.center li {
+	margin-left: 46px;
 }
-#custom-algin {
-	padding-top: 5px;
-}
-.socials {
-	padding:0;
-}
-#outer_wrapper {
-	margin-top: 5px;
-}
-#custom-col-7 {
-	margin-top: -10px;
+    .right li {
+	margin-left: -35px;
 }
 }
-
-@media only screen and (min-width: 999px) {
-	#outer_wrapper {
-	margin-left: 200px;
-	margin-right: 100px;
+@media only screen and (min-width: 365px) and (max-width: 380px) {
+    .left li,.center li {
+	margin-left: 41px;
+}
+    .right li {
+	margin-left: -35px;
 }
 }
-
+@media only screen and (min-width: 353px) and (max-width: 364px) {
+    .left li,.center li {
+	margin-left: 30px;
+}
+    .right li {
+	margin-left: -45px;
+}
+}
+@media only screen and (min-width: 336px) and (max-width: 352px) {
+    .left li,.center li {
+	margin-left: 25px;
+}
+    .right li {
+	margin-left: -40px;
+}
+}
+@media only screen and (min-width: 327px) and (max-width: 335px) {
+    .left li,.center li {
+	margin-left: 18px;
+}
+    .right li {
+	margin-left: -35px;
+}
+}
+@media only screen and (min-width: 317px) and (max-width: 326px) {
+    .left li,.center li {
+	margin-left: 26px;
+}
+    .right li {
+	margin-left: -20px;
+}
+}
+@media only screen and (min-width: 310px) and (max-width: 316px) {
+    .left li,.center li {
+	margin-left: 17px;
+}
+    .right li {
+	margin-left: -25px;
+}
+}
+@media only screen and (min-width: 306px) and (max-width: 309px) {
+    .left li,.center li {
+	margin-left: 15px;
+}
+    .right li {
+	margin-left: -25px;
+}
+}
+@media only screen and (min-width: 299px) and (max-width: 305px) {
+    .left li,.center li {
+	margin-left: 15px;
+}
+    .right li {
+	margin-left: -17px;
+}
+}
+@media only screen and (min-width: 276px) and (max-width: 298px) {
+    .left li,.center li {
+	margin-left: 5px;
+}
+    .right li {
+	margin-left: -17px;
+}
+}
 </style>
 {{!
     This file is part of Moodle - http://moodle.org/
@@ -113,68 +187,63 @@
     Page footer.
 }}
 <footer id="page-footer" class="text-light notranslate" style="background:green;padding-top:10px;padding:0;margin-bottom:0;box-shadow: 0 0 25px -5px rgba(0,0,0,.7);clear:both;">
-    <div class="container col-md-12" style="margin:0;padding:0;">
+    <div class="container col-md-12 col-sm-12" style="margin:0;padding:0;">
+    <div id="course-footer">{{{ output.course_footer }}}</div>
+    <div id="outer_wrapper" class="row" style="padding:0;">
 
-        <div id="course-footer">{{{ output.course_footer }}}</div>
+<div class="col-md-8 col-medium-12 p-0">
+<div class="row">
+<div id="hight_down" class="col-md-6 col-sm-6 col-xs-6 col-xxs-12 changeorder d-flex" style="padding:0;">
+		<ul class="left align row footercontact" style="display:inline-block;color:white;padding:0;width:100%;display:flex;align-items:center;">
+                        {{#output.brandphone_footer}}
+			<li class="middle-right middle top_bottom_align" style="font-style:italic;">&nbsp;<i class="fa fa-phone">
+			</i>&nbsp;{{output.brandphone_footer}}</li>
+			{{/output.brandphone_footer}}
+                </ul>
+		</div>
 
-        	<div id="outer_wrapper" class="row" style="padding:0;">
 
-
-                <div id="logo_wrapper" class="col-md-4 col-sm-2 col-xs-2 d-flex align-items-center pl-0">
-                    <div class="d-flex-item " style="display:inline-block;top:50%;" id="logo"></div>
-                </div>
-
-
-		<div id="right_links" class="col-md-8 col-sm-10 col-xs-10" style="margin-top:5px;padding-right:0;margin-right:0;">
-		<div class="row">
-
-		<div class="col-md-4 custom-col-6 footerlogo" style="padding:0;">
-		 <div id="custom-algin" class="brandbox" style="width:100%;">
-
-                        {{#output.brandorganization_footer}}
+<div class="col-md-6 col-sm-6 col-xs-6 col-xxs-12 d-flex" style="padding:0;">
+		<ul class="center align row footercontact" style="display:inline-block;color:white;padding:0;width:100%;display:flex;align-items:center;">
+			{{#output.brandorganization_footer}}
 			<h3>{{output.brandorganization_footer}}</h3>
 			{{/output.brandorganization_footer}}
-                        <ul class="row footercontact" style="color:white;padding:0;width:100%!important;">
-                        {{#output.brandwebsite_footer}}
-			<li class="col-md-12 col-sm-6 col-xs-7 col-xxs-12 p-0"><a href="http://www.mymeproject.org/" target="_blank" style="text-decoration:none;color:white;">
-			<i class="fa fa-globe"></i>&nbsp;{{output.brandwebsite_footer}}</a>
-			</li>{{/output.brandwebsite_footer}}
 
-                        {{#output.brandemail_footer}}<li>
+                        {{#output.brandwebsite_footer}}
+			<li class="middle-left top_bottom_align" style="postion:absolute;right:0;">&nbsp;<i class="fa fa-globe">
+			</i>&nbsp;{{output.brandwebsite_footer}}</li>
+			{{/output.brandwebsite_footer}}
+
+			{{#output.brandemail_footer}}<li>
 			<i class="fa fa-envelope"></i>
 			{{output.brandemail_footer}}</li>
 			{{/output.brandemail_footer}}
-                        {{#output.brandphone_footer}}
-			<li class="col-md-12 col-sm-6 col-xs-5 col-xxs-12 p-0">&nbsp;<i class="fa fa-phone">
-			</i>&nbsp;{{output.brandphone_footer}}</li>
-			{{/output.brandphone_footer}}
-                        </ul>
-		</div>
-		</div>
+                </ul>		
+</div>
 
+</div>
+</div>
 
-
-
-                <div class="col-md-4 custom-col-6" style="padding:0;display:flex!important;justify-content:center!important;">
-                    <div class="brandbox" style="width:308px;">
-		    <div style="display:inline-block;padding:0;">
-
+<div class="col-md-4 col-medium-12 col-xxs-12" style="padding:0;display:flex!important;justify-content:center!important;">
+  
+		 <div class="align" style="display:inline-block;padding:0;display:flex;align-items:center;">
+		 <div class="brandbox">
                         <!-- {{{ output.social_icons }}} -->
-		        <ul class="footercontact socials" style="margin-bottom:5px;padding:0;">
-                    
+		        <ul class="right footercontact socials" style="margin-bottom:5px;padding:0;">
+                    <li class="right">
                     <a href="https://www.facebook.com/mymeproject" target="_blank" style="text-decoration:none;color:white;"><span class="fa-stack fa-1x">
                     <i class="fa fa-square fa-stack-2x"></i>
                     <i class="fa fa-facebook fa-inverse fa-stack-1x" style="background:#3b5998;border-radius:4px;box-shadow:1px 0px 20px -6px #000;"></i>
                     </span>
-                    <span id="fbtext" style="color:white;font-size:15px;">www.facebook.com/mymeproject</span></a>   
+                    <span id="fbtext" style="color:white;font-size:15px;">www.facebook.com/mymeproject</span></a></li>   
         	</ul>
 		</div>
                 </div>
 		</div>
-          	</div>
+        
        
         {{{ output.standard_end_of_body_html }}}
-
+</div>
     </div>
-
+</div>
 </footer>
