@@ -29,7 +29,7 @@ div.usermenu .dropdown-divider
    }
 
 .navbar-fhs {
-	background:green;
+	background:#019101;
 }
 .navbar-brand, .navbar-brand .site-name {
 	display: inline-block!important;
@@ -39,6 +39,8 @@ div.usermenu .dropdown-divider
 	font-family: snackercomic;
 	color: #fff;
 	font-size: 38px;
+    	font-weight: 600;
+ 	font-style: italic;
 }
 .site-second-name {
 	color: white;
@@ -90,7 +92,7 @@ div.usermenu .dropdown-divider
 {{!
     Page navbar.
 }}
-<nav class="navbar-fhs {{#output.show_teacher_navbarcolor}}navbar-teacher{{/output.show_teacher_navbarcolor}} {{#output.show_student_navbarcolor}}navbar-student{{/output.show_student_navbarcolor}} navbar-expand moodle-has-zindex" style="position:fixed!important;top:0;z-index:5;width:100%;">
+<nav class="navbar-fhs {{#output.show_teacher_navbarcolor}}navbar-teacher{{/output.show_teacher_navbarcolor}} {{#output.show_student_navbarcolor}}navbar-student{{/output.show_student_navbarcolor}} navbar-expand moodle-has-zindex" style="position:fixed!important;top:0;z-index:5;width:100%;box-shadow: 0 0 20px -5px rgba(86, 111, 221,.9);">
 
 <div class="row" style="height:40px;">
     {{#hasfhsdrawer}}
@@ -148,8 +150,8 @@ div.usermenu .dropdown-divider
 	<!-- search_box -->
 </div>
 </div>
-<div style="color:#fff;text-align:center;padding-bottom:5px;font-weight:bold;">
+<div style="color:#fff;text-align:center;padding-bottom:5px;font-size:22px;font-weight:600;font-style:italic;">
 	ကိုယ်တိုင်လေ့လာသင်ယူခြင်း
-</div>          
+</div>       
 </nav>
 
