@@ -56,7 +56,8 @@ class auth_plugin_onlineconfirm extends auth_plugin_base {
      * @param string $password The password
      * @return bool Authentication success or failure.
      */
-    global $CFG, $DB;
+    function user_login ($username, $password) {
+        global $CFG, $DB;
 	$password = strtolower($password);
 	if ( preg_match('/\s/',$username) ) {
 		$username = str_replace(' ', '', $username);
