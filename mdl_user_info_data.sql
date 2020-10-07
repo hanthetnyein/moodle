@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 07, 2020 at 10:39 PM
+-- Generation Time: Oct 07, 2020 at 10:58 PM
 -- Server version: 5.7.31-0ubuntu0.18.04.1
 -- PHP Version: 7.2.33-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -40,7 +40,7 @@ CREATE TABLE `mdl_user_info_data` (
 
 INSERT INTO `mdl_user_info_data` (`id`, `userid`, `fieldid`, `data`, `dataformat`) VALUES
 (1, 4, 1, '25', 0),
-(2, 4, 2, 'P@s$W0rd', 0),
+(2, 4, 2, 'p@s$w0rd', 0),
 (3, 4, 3, 'အထက်တန်း', 0),
 (36, 2, 1, '25', 0),
 (37, 2, 2, 'P@s$W0rd', 0),

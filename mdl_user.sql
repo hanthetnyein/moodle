@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 07, 2020 at 10:38 PM
+-- Generation Time: Oct 07, 2020 at 10:58 PM
 -- Server version: 5.7.31-0ubuntu0.18.04.1
 -- PHP Version: 7.2.33-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -88,7 +88,7 @@ CREATE TABLE `mdl_user` (
 
 INSERT INTO `mdl_user` (`id`, `auth`, `confirmed`, `policyagreed`, `deleted`, `suspended`, `mnethostid`, `username`, `password`, `idnumber`, `firstname`, `lastname`, `email`, `emailstop`, `icq`, `skype`, `yahoo`, `aim`, `msn`, `phone1`, `phone2`, `institution`, `department`, `address`, `city`, `country`, `lang`, `calendartype`, `theme`, `timezone`, `firstaccess`, `lastaccess`, `lastlogin`, `currentlogin`, `lastip`, `secret`, `picture`, `url`, `description`, `descriptionformat`, `mailformat`, `maildigest`, `maildisplay`, `autosubscribe`, `trackforums`, `timecreated`, `timemodified`, `trustbitmask`, `imagealt`, `lastnamephonetic`, `firstnamephonetic`, `middlename`, `alternatename`) VALUES
 (2, 'manual', 1, 0, 0, 0, 1, 'admin', '$2y$10$FmUDAnwTZJhmwCfD38mkg.jXYb6MdHYDT/D8dfHdGiX4aiTF7JSyS', '', 'Admin', 'User', 'myMEproject.YGN@gmail.com', 0, '', '', '', '', '', '', '', '', '', '', 'Yangon', 'MM', 'en', 'gregorian', '', '99', 1595581392, 1596513150, 1596013245, 1596513059, '203.81.88.54', '', 0, '', NULL, 1, 1, 0, 2, 1, 0, 0, 1601305895, 0, NULL, NULL, NULL, NULL, NULL),
-(4, 'manual', 1, 0, 0, 0, 1, 'nfe-admin-01', '$2y$10$Cee1MJH8zKzVn5PPyGogpuXXOrgbo/jP.CgSxp9ToAAJ9DopaQ1Q.', '', 'NFE', 'Admin-01', 'nfe-admin-01@gmail.com', 0, '', '', '', '', '', '', '', '', '', '', 'Yangon', 'MM', 'en', 'gregorian', '', '99', 1596015653, 1601461682, 1601453626, 1601457499, '210.14.97.100', '', 0, '', NULL, 1, 1, 0, 2, 1, 0, 1596015366, 1600095387, 0, NULL, NULL, NULL, NULL, NULL),
+(4, 'manual', 1, 0, 0, 0, 1, 'nfe-admin-01', '$2y$10$XkNv0VE7OeCfpww2/Pss9.P4Jr2898ruNLySQwMXf5CgScUpZeQQy', '', 'NFE', 'Admin-01', 'nfe-admin-01@gmail.com', 0, '', '', '', '', '', '', '', '', '', '', 'Yangon', 'MM', 'en', 'gregorian', '', '99', 1596015653, 1601461682, 1601453626, 1601457499, '210.14.97.100', '', 0, '', NULL, 1, 1, 0, 2, 1, 0, 1596015366, 1600095387, 0, NULL, NULL, NULL, NULL, NULL),
 (5, 'onlineconfirm', 1, 0, 0, 0, 1, 'testerone', '$2y$10$Is130HYnRJ2k1opsT1XcEuwJaOAhVqw6OEvpnZ2l6jHpwin14zr1.', '', 'testerone', '', '', 0, '', '', '', '', '', '', '', '', '', '', '', '', 'my', 'gregorian', '', '99', 1601367659, 1601367715, 1601367659, 1601367715, '210.14.97.100', 'rC175WrACHizNc6', 0, '', NULL, 1, 1, 0, 2, 1, 0, 1601367656, 1601367656, 0, NULL, '', '', '', ''),
 (6, 'onlineconfirm', 1, 0, 0, 0, 1, 'testerone', '$2y$10$OndyGtFLGOOwoJUO8f/7huxT/7RpiAXArkDD7p.9JZpCKsxC9Cqsy', '', 'testerone', '', '', 0, '', '', '', '', '', '', '', '', '', '', '', '', 'my', 'gregorian', '', '99', 1601367696, 1601367747, 1601367696, 1601367747, '210.14.97.100', 'EHzgIUbvlTkbQjN', 0, '', NULL, 1, 1, 0, 2, 1, 0, 1601367693, 1601367693, 0, NULL, '', '', '', ''),
 (7, 'manual', 1, 0, 0, 0, 1, 'nfebox_manager_01', '$2y$10$c4D/Y5eBDmb9Yv6cRoWGVOwvvZyQaow8N8c.MRKFDOWWbJKkM4VR.', '', 'nfebox_manager_01', '', '', 0, '', '', '', '', '', '', '', '', '', '', '', 'MM', 'my', 'gregorian', '', '99', 1601448040, 1601453580, 1601448040, 1601449656, '69.160.29.4', '', 0, '', '', 1, 1, 0, 0, 1, 0, 1601447876, 1601447876, 0, '', '', '', '', ''),
