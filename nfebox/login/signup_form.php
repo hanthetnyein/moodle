@@ -173,8 +173,10 @@ class login_signup_form extends moodleform implements renderable, templatable {
     public function validation($data, $files) {
 	global $CFG, $DB;
         $errors = parent::validation($data, $files);
-	$username = $data['username'];
-	$father=array();
+        $username = $data['username'];
+        $username = preg_replace("/\s+/", "", $username);
+        $username = strtolower($username);
+  	$father=array();
 	$type_father_name = $DB->get_field_sql("SELECT f.id 
               FROM {user_info_field} AS f
               WHERE f.shortname = 'father_hide'");
