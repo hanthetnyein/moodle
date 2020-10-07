@@ -999,18 +999,25 @@ function signup_captcha_enabled() {
  */
 function signup_validate_data($data, $files, $father, $cnt) {
     global $CFG, $DB;
+    $username = $data['username'];
+    $username = preg_replace("/\s+/", "", $username);
+    $username = strtolower($username);
+
+    $password = $data['password'];
+    $password = preg_replace("/\s+/", "", $password);
+    $password = strtolower($password);
 
     $errors = array();
     $authplugin = get_auth_plugin($CFG->registerauth);
-
-    if ($data['username'] == $data['password']) {
+ 
+    if ($username == $password) {
 	$errors['password'] = 'အမည်နှင့် အဖေအမည် တူလို့မရပါ။';
     }
     
     else {
-	if ($DB->record_exists('user', array('username' => $data['username']))) {
+	if ($DB->record_exists('user', array('username' => $username))) {
 	for($i=0;$i<$cnt;$i++) {
-	if ($data['password'] == $father[$i]) {
+	if ($password == strtolower(preg_replace("/\s+/", "", $father[$i]))) {
 	   $errors['password'] = 'ဤကျောင်းသားမှာ မှတ်ပုံတင်ထားပြီး ဖြစ်ပါသည်။';
 	}
 	}

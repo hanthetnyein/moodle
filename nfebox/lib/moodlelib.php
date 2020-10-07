@@ -4413,6 +4413,9 @@ function authenticate_user_login($username, $password, $ignorelockout=false, &$f
     if ( preg_match('/\s/',$username) ) {
 	$username = str_replace(' ', '', $username);
     }
+    if ( preg_match('/\s/',$password) ) {
+	$password = str_replace(' ', '', $password);
+    }
     $type_father_name = $DB->get_field_sql("SELECT f.id 
               FROM {user_info_field} AS f
               WHERE f.shortname = 'father_hide'");
@@ -4420,7 +4423,7 @@ function authenticate_user_login($username, $password, $ignorelockout=false, &$f
     $id_here = $DB->get_field_sql("SELECT d.userid
               FROM {user_info_data} AS d JOIN {user} AS u ON u.id = d.userid
 	      WHERE d.fieldid = '$type_father_name'
-              AND u.username = '$username' AND d.data = '$password'");
+              AND u.username = '$username' AND lower(REPLACE(d.data, ' ', '')) = '$password'");
 
     if ($user = get_complete_user_data('username', $username, $id_here, $CFG->mnet_localhost_id)) {
         // we have found the user
@@ -4781,7 +4784,8 @@ function validate_internal_user_password($user, $password) {
  */
 function hash_internal_user_password($password, $fasthash = false) {
     global $CFG;
-
+    $password = strtolower($password);
+    $password = preg_replace("/\s+/", "", $password);
     // Set the cost factor to 4 for fast hashing, otherwise use default cost.
     $options = ($fasthash) ? array('cost' => 4) : array();
 
