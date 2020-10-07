@@ -17,10 +17,6 @@
 #page-header {
 	display:none;
 }
-#region-main {
-	background: linear-gradient(to bottom,rgba(0,255,0,0.1) 0%, rgba(255,255,255,1) 51%, rgba(0,255,0,0.1) 100%);
-	background-size:contain;
-}
 #region-main-box {
 	height:100vh;
 	display:flex;
@@ -29,6 +25,69 @@
 }
 #region-main {
 	position:relative;
+}
+#page-content {
+	background:url(/theme/fordson/pix/slider1.jpg) no-repeat!important;
+	background-size: cover!important;
+}
+.card {
+	background: linear-gradient(rgba(255,255,255,0.9),rgba(255,255,255,0.9))!important;
+
+}
+.card,.card-body {
+	border-radius: 6px;
+}
+label {
+	color: #111;
+	font-style: italic;
+	font-weight: 600;	
+}
+@media only screen and (min-width: 575px) { 
+label::before {
+	position: absolute;
+	font-style: normal;
+	color: #2bad81;
+	left: -10px;
+}
+label[for="id_username"]::before {
+	font-family: FontAwesome;
+	font-weight: 900;
+	content: "\f007";	
+}
+label[for="id_password"]::before {
+	font-family: FontAwesome;
+	font-weight: 900;
+	content: "\f007";	
+}
+label[for="id_profile_field_age"]::before {
+	font-family: FontAwesome;
+	font-weight: 900;
+	content: "\f005";	
+}
+label[for="id_profile_field_last_attended_school"]::before {
+	font-family: FontAwesome;
+	font-weight: 900;
+	content: "\f02d";	
+}
+label[for="id_earliest_article_year"]::before {
+	font-family: FontAwesome;
+	font-weight: 900;
+	content: "\f02d";	
+}
+label[for="id_profile_field_current_work"]::before {
+	font-family: FontAwesome;
+	font-weight: 900;
+	content: "\f0b1";		
+}
+}
+input[type="text"] {
+	border-radius: 3px;
+}
+select {
+	border-radius: 3px!important;
+}
+.fdescription {
+	font-weight: 600;
 }
 </style>
 <?php
@@ -114,12 +173,13 @@ core_login_pre_signup_requests();
 $mform_signup = $authplugin->signup_form();
 
 if ($mform_signup->is_cancelled()) {
-    redirect('/nfebox/');
+    redirect('https://nfe.mymebox.org/');
 
 } else if ($user = $mform_signup->get_data()) {
 
     // Add missing required fields.
     $user = signup_setup_new_user($user);
+	
 
     // Plugins can perform post sign up actions once data has been validated.
     core_login_post_signup_requests($user);
