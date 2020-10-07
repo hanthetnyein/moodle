@@ -56,10 +56,13 @@ class auth_plugin_onlineconfirm extends auth_plugin_base {
      * @param string $password The password
      * @return bool Authentication success or failure.
      */
-    function user_login ($username, $password) {
-        global $CFG, $DB;
+    global $CFG, $DB;
+	$password = strtolower($password);
 	if ( preg_match('/\s/',$username) ) {
 		$username = str_replace(' ', '', $username);
+    	}
+	if ( preg_match('/\s/',$password) ) {
+		$password = str_replace(' ', '', $password);
     	}
 	$type_father_name = $DB->get_field_sql("SELECT f.id 
               FROM {user_info_field} AS f
@@ -68,7 +71,7 @@ class auth_plugin_onlineconfirm extends auth_plugin_base {
     	$id_here = $DB->get_field_sql("SELECT d.userid
               FROM {user_info_data} AS d JOIN {user} AS u ON u.id = d.userid
 	      WHERE d.fieldid = '$type_father_name'
-              AND u.username = '$username' AND d.data = '$password'");
+              AND u.username = '$username' AND lower(REPLACE(d.data, ' ', '')) = '$password'");
 
         if ($user = get_complete_user_data('username', $username, $id_here, $CFG->mnet_localhost_id)) {
             return validate_internal_user_password($user, $password);
