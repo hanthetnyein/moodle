@@ -1013,7 +1013,6 @@ function signup_validate_data($data, $files, $father, $cnt) {
     if ($username == $password) {
 	$errors['password'] = 'အမည်နှင့် အဖေအမည် တူလို့မရပါ။';
     }
-    
     else {
 	if ($DB->record_exists('user', array('username' => $username))) {
 	for($i=0;$i<$cnt;$i++) {
@@ -1033,7 +1032,7 @@ function signup_validate_data($data, $files, $father, $cnt) {
         }
     }
     }
-
+	
     // Check if user exists in external db.
     // TODO: maybe we should check all enabled plugins instead.
     if ($authplugin->user_exists($data['username'])) {
@@ -1057,6 +1056,7 @@ function signup_validate_data($data, $files, $father, $cnt) {
             $errors['email'] = $err;
         }
     }
+
     // Construct fake user object to check password policy against required information.
     $tempuser = new stdClass();
     $tempuser->id = 1;
@@ -1086,8 +1086,16 @@ function signup_validate_data($data, $files, $father, $cnt) {
  * @since Moodle 3.2
  */
 function signup_setup_new_user($user) {
-    global $CFG;
-
+    global $CFG,$DB;
+    if ($records = $DB->get_records('user', null, 'id DESC', 'id', 0, 1)) {
+      // $DB->get_records() returns an array
+      // of objects indexed by the "id" field
+      // so get id of first record using key()
+      $id = key($records);
+     } else {
+      // oops, no records found
+      $id = 0;
+     }
     $user->confirmed   = 0;
     $user->lang        = current_language();
     $user->firstaccess = 0;
