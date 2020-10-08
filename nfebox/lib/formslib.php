@@ -1606,7 +1606,7 @@ class MoodleQuickForm extends HTML_QuickForm_DHTMLRulesTableless {
         }
         $this->_reqHTML = '<span class="req">' . $OUTPUT->pix_icon('req', get_string('requiredelement', 'form')) . '</span>';
         $this->_advancedHTML = '<span class="adv">' . $OUTPUT->pix_icon('adv', get_string('advancedelement', 'form')) . '</span>';
-        $this->setRequiredNote('အနီရောင်အမှတ်အသား '. $OUTPUT->pix_icon('req', get_string('requiredelement', 'form')) .'ပြထားသော ကွက်လပ်များကိုဖြည့်ပါ', 'form');
+        $this->setRequiredNote('အနီရောင်အမှတ်အသား '. $OUTPUT->pix_icon('req', get_string('requiredelement', 'form')).'ပြထားသော နေရာအားလုံးကို ပြည့်စုံစွာဖြည့်ပေးပါရန်။ ', 'form');
     }
 
     /**
