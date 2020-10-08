@@ -27,7 +27,7 @@
 	position:relative;
 }
 #page-content {
-	background:url(/theme/fordson/pix/slider1.jpg) no-repeat!important;
+	background:url(/nfebox/theme/fordson/pix/slider1.jpg) no-repeat!important;
 	background-size: cover!important;
 }
 .card {
@@ -47,7 +47,7 @@ label::before {
 	position: absolute;
 	font-style: normal;
 	color: #2bad81;
-	left: -10px;
+	left: -15px;
 }
 label[for="id_username"]::before {
 	font-family: FontAwesome;
@@ -67,23 +67,29 @@ label[for="id_profile_field_age"]::before {
 label[for="id_profile_field_last_attended_school"]::before {
 	font-family: FontAwesome;
 	font-weight: 900;
-	content: "\f02d";	
+	content: "\f02d";
+	top: 20px;	
 }
 label[for="id_earliest_article_year"]::before {
 	font-family: FontAwesome;
 	font-weight: 900;
-	content: "\f02d";	
+	content: "\f02d";
+	top: 10px;	
 }
 label[for="id_profile_field_current_work"]::before {
 	font-family: FontAwesome;
 	font-weight: 900;
-	content: "\f0b1";		
+	content: "\f0b1";
+	top: 10px;		
 }
 }
 input[type="text"] {
+	border: 1px solid rgba(51, 102, 0, 0.5);
 	border-radius: 3px;
 }
-select {
+#id_profile_field_last_attended_school,
+#id_earliest_article_year {
+	border: 1px solid rgba(51, 102, 0, 0.5);
 	border-radius: 3px!important;
 }
 .fdescription {
