@@ -27,7 +27,7 @@
 	position:relative;
 }
 #page-content {
-	background:url(/nfebox/theme/fordson/pix/slider1.jpg) no-repeat!important;
+	background:url(/theme/fordson/pix/slider1.jpg) no-repeat!important;
 	background-size: cover!important;
 }
 .card {
