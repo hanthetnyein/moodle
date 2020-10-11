@@ -27,7 +27,7 @@
 	position:relative;
 }
 #page-content {
-	background:url(/theme/fordson/pix/slider1.jpg) no-repeat!important;
+	background:url(/nfebox/theme/fordson/pix/slider1.jpg) no-repeat!important;
 	background-size: cover!important;
 }
 .card {
@@ -93,7 +93,12 @@ input[type="text"] {
 	border-radius: 3px!important;
 }
 .fdescription {
+	padding-left:3px;
+	padding-right:3px;
+	text-align: center;
 	font-weight: 600;
+	position: relative;
+	bottom: -10px;
 }
 </style>
 <?php
@@ -179,7 +184,7 @@ core_login_pre_signup_requests();
 $mform_signup = $authplugin->signup_form();
 
 if ($mform_signup->is_cancelled()) {
-    redirect('https://nfe.mymebox.org/');
+    redirect('/nfebox/');
 
 } else if ($user = $mform_signup->get_data()) {
 
