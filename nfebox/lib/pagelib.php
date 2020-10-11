@@ -1573,15 +1573,6 @@ class moodle_page {
     }
 
     /**
-     * For diagnostic/debugging purposes, find where the theme setup was triggered.
-     *
-     * @return null|array null if theme not yet setup. Stacktrace if it was.
-     */
-    public function get_where_theme_was_initialised() {
-        return $this->_wherethemewasinitialised;
-    }
-
-    /**
      * Reset the theme and output for a new context. This only makes sense from
      * external::validate_context(). Do not cheat.
      *
@@ -1618,8 +1609,7 @@ class moodle_page {
         }
 
         $mnetpeertheme = '';
-        $mnetvarsok = isset($CFG->mnet_localhost_id) && isset($USER->mnethostid);
-        if (isloggedin() and $mnetvarsok and $USER->mnethostid != $CFG->mnet_localhost_id) {
+        if (isloggedin() and isset($CFG->mnet_localhost_id) and $USER->mnethostid != $CFG->mnet_localhost_id) {
             require_once($CFG->dirroot.'/mnet/peer.php');
             $mnetpeer = new mnet_peer();
             $mnetpeer->set_id($USER->mnethostid);
