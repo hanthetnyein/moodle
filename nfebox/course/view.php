@@ -1,3 +1,11 @@
+<style>
+.path-course-view #completionprogressid,.path-course-view .icon {display: none;}
+@media only screen and (max-width: 577px) {
+	#learningcontent {
+	margin-top:24px!important;
+}
+}
+</style>
 <?php
 
 //  Display the course home page.
@@ -243,7 +251,7 @@
     $PAGE->set_heading($course->fullname);
     echo $OUTPUT->header();
 
-    if ($USER->editing == 1) {
+    if ($USER->editing == 1 && !empty($CFG->enableasyncbackup)) {
 
         // MDL-65321 The backup libraries are quite heavy, only require the bare minimum.
         require_once($CFG->dirroot . '/backup/util/helper/async_helper.class.php');
