@@ -1,11 +1,3 @@
-<style>
-.path-course-view #completionprogressid,.path-course-view .icon {display: none;}
-@media only screen and (max-width: 577px) {
-	#learningcontent {
-	margin-top:24px!important;
-}
-}
-</style>
 <?php
 
 //  Display the course home page.
