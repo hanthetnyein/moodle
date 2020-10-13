@@ -1,3 +1,46 @@
+<style>
+#back_key {
+    	color: white;
+   	font-weight: 600;
+      	text-decoration: none;
+	position: fixed;
+	top:0;
+	left:0;
+	z-index:5;
+}
+@media only screen and (min-width: 694px) {
+#back_key span {
+	font-size: 15px;
+	position: relative;
+	left: -130px;
+	top: -20px;
+}
+#back_key img{
+  	position: relative;
+  	left: 65px;
+	width:130px;
+	height:77px;
+	opacity: 0.5;
+}
+}
+@media only screen and (max-width: 693px) {
+#back_key span {
+	
+	font-size: 14px;
+	position: relative;
+	left: -88px;
+	top: -16px;
+}
+#back_key img{
+	position: relative;
+	top: 9px;
+  	left: -6px;
+	width:92px;
+	height:56px;
+	opacity: 0.4;
+}
+}
+</style>
 <?php
 // This file is part of Moodle - http://moodle.org/
 //
@@ -122,6 +165,11 @@ echo $courserenderer->frontpage();
 
 if ($editing && has_capability('moodle/course:create', context_system::instance())) {
     echo $courserenderer->add_new_course_button();
+}
+require_once('config.php'); 
+if (!isloggedin()) {
+$back_key = "<a id='back_key' href='http://www.mymebox.org'><img src='/theme/fordson/pix/Bus_button.png'><span>&nbsp;&laquo;&nbsp;ပြန်ထွက်ရန်</span></a>";
+echo $back_key;
 }
 echo $OUTPUT->footer();
 ?>
