@@ -12,32 +12,33 @@
 #back_key span {
 	font-size: 15px;
 	position: relative;
-	left: -78px;
-	top: -18px;
+	left: -65px;
+	top: 6px;
+	text-shadow: 1px 1px 1px #339976, -1px 1px 1px #339976, 0 0 1em green, 0 0 0.2em green;
 }
 #back_key img{
   	position: relative;
-  	left: 61px;
-	top: 7px;
-	width:75px;
-	height:65px;
+  	left: 65px;
+	top: 12px;
+	width:65px;
+	height:55px;
 	opacity: 0.9;
 }
 }
 @media only screen and (max-width: 717px) {
 #back_key span {
-	font-size: 14px;
+	font-size: 13px;
 	position: relative;
-	left: -53px;
-	top: -9px;
+	left: -39px;
+	top: -8px;
 	text-shadow: 1px 1px 1px #339976, -1px 1px 1px #339976, 0 0 1em green, 0 0 0.2em green;
 }
 #back_key img{
 	position: relative;
-	top: 8px;
-  	left: 5px;
-	width:51px;
-	height:44px;
+	top: 18px;
+  	left: 7px;
+	width:38px;
+	height:32px;
 	opacity: 1;
 }
 }
@@ -169,7 +170,7 @@ if ($editing && has_capability('moodle/course:create', context_system::instance(
 }
 require_once('config.php'); 
 if (!isloggedin()) {
-$back_key = "<a id='back_key' href='http://www.mymebox.org'><img src='/theme/fordson/pix/myme.png'><span>&nbsp;&laquo;&nbsp;ပြန်ထွက်ရန်</span></a>";
+$back_key = "<a id='back_key' href='http://www.mymebox.org'><img src='/theme/fordson/pix/myme.png'><span>&nbsp;&laquo;&nbsp;ထွက်ရန်</span></a>";
 echo $back_key;
 }
 echo $OUTPUT->footer();
