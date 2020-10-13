@@ -8,36 +8,37 @@
 	left:0;
 	z-index:5;
 }
-@media only screen and (min-width: 694px) {
+@media only screen and (min-width: 718px) {
 #back_key span {
 	font-size: 15px;
 	position: relative;
-	left: -130px;
-	top: -20px;
+	left: -78px;
+	top: -18px;
 }
 #back_key img{
   	position: relative;
-  	left: 65px;
-	width:130px;
-	height:77px;
-	opacity: 0.5;
+  	left: 61px;
+	top: 7px;
+	width:75px;
+	height:65px;
+	opacity: 0.9;
 }
 }
-@media only screen and (max-width: 693px) {
+@media only screen and (max-width: 717px) {
 #back_key span {
-	
 	font-size: 14px;
 	position: relative;
-	left: -88px;
-	top: -16px;
+	left: -53px;
+	top: -9px;
+	text-shadow: 1px 1px 1px #339976, -1px 1px 1px #339976, 0 0 1em green, 0 0 0.2em green;
 }
 #back_key img{
 	position: relative;
-	top: 9px;
-  	left: -6px;
-	width:92px;
-	height:56px;
-	opacity: 0.4;
+	top: 8px;
+  	left: 5px;
+	width:51px;
+	height:44px;
+	opacity: 1;
 }
 }
 </style>
@@ -168,7 +169,7 @@ if ($editing && has_capability('moodle/course:create', context_system::instance(
 }
 require_once('config.php'); 
 if (!isloggedin()) {
-$back_key = "<a id='back_key' href='http://www.mymebox.org'><img src='/theme/fordson/pix/Bus_button.png'><span>&nbsp;&laquo;&nbsp;ပြန်ထွက်ရန်</span></a>";
+$back_key = "<a id='back_key' href='http://www.mymebox.org'><img src='/theme/fordson/pix/myme.png'><span>&nbsp;&laquo;&nbsp;ပြန်ထွက်ရန်</span></a>";
 echo $back_key;
 }
 echo $OUTPUT->footer();
