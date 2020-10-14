@@ -31,24 +31,68 @@
 class profile_define_multiselect extends profile_define_base
 {
     /**
-     * Sets the hidden value for default value.
-     * @param object $form
+     * Define the setting for a multi select custom field.
+     *
+     * @param moodleform $form The user form
      */
-    function define_form_specific($form)
+    public function define_form_specific($form)
     {
-        $form->addElement('hidden', 'defaultdata', '0');
-        $form->setType('defaultdata', PARAM_INT);
+	$currentyear = date('Y');
+        $startyear = $currentyear - 25;
+        $options = array_combine(range($startyear,$currentyear), range($startyear,$currentyear));
+        /// Param 1 for menu type contains the options
+        $form->addElement('textarea', 'param1', get_string('profilemenuoptions', 'admin'), array('rows' => 6, 'cols' => 40));
+        $form->setType('param1', PARAM_TEXT);
+	for($i=0;$i<=25;$i++) {
+	 $lastvalue .= $currentyear-$i."\n";
+	} 
+	$lastvalue = (string)$lastvalue;
+	$form->setDefault('param1', $lastvalue );
+        /// Default data
+        //$form->addElement('text', 'defaultdata', get_string('profiledefaultdata', 'admin'), 'size="50"');
+        //$form->setType('defaultdata', PARAM_TEXT);
     }
 
     /**
-     * Sets default value to 0.
+     * Validate the data from the profile field form.
      *
-     * @param   object   $data data from the add/edit profile field form
-     * @return  object   $data with defaultdata attribute set to zero
-     */
-    function define_save_preprocess($data)
+     * @param stdClass $data  From the add/edit profile field form
+     * @param array    $files
+     *
+     * @return array associative array of error messages
+     *//*
+    public function define_validate_specific($data, $files)
     {
-        $data->defaultdata = '0';
+        $err = array();
+
+        $data->param1 = str_replace("\r", '', $data->param1);
+
+        /// Check that we have at least 2 options
+        if (($options = explode("\n", $data->param1)) === false) {
+            $err['param1'] = get_string('profilemenunooptions', 'admin');
+        } elseif (count($options) < 2) {
+            $err['param1'] = get_string('profilemenutoofewoptions', 'admin');
+
+        /// Check the default data exists in the options
+        } elseif (!empty($data->defaultdata) and !in_array($data->defaultdata, $options)) {
+            $err['defaultdata'] = get_string('profilemenudefaultnotinoptions', 'admin');
+        }
+
+        return $err;
+    }*/
+
+    /**
+     * Preprocess data from the profile field form before
+     * it is saved.
+     *
+     * @param stdClass $data from the add/edit profile field form
+     *
+     * @return stdClass processed data object
+     */
+    public function define_save_preprocess($data)
+    {
+        $data->param1 = str_replace("\r", '', $data->param1);
+
         return $data;
     }
 }
