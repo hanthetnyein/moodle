@@ -44,7 +44,10 @@ class profile_define_multiselect extends profile_define_base
         $form->addElement('textarea', 'param1', get_string('profilemenuoptions', 'admin'), array('rows' => 6, 'cols' => 40));
         $form->setType('param1', PARAM_TEXT);
 	for($i=0;$i<=25;$i++) {
-	 $lastvalue .= $currentyear-$i."\n";
+	 $lastvalue .= $currentyear-$i;
+	 if($i != 25 ) {
+	 	$lastvalue .= "\n";
+	 }
 	} 
 	$lastvalue = (string)$lastvalue;
 	$form->setDefault('param1', $lastvalue );
