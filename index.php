@@ -277,16 +277,16 @@ if (!$csv) {
     print '<table id="completion-progress" class="generaltable flexible boxaligncenter" style="text-align:left"><thead><tr style="vertical-align:top">';
 
     // User heading / sort option
-    print '<th scope="col" class="completion-sortchoice" style="font-size:17px;font-weight:600;color:green;">';
+    print '<th scope="col" class="completion-sortchoice">';
 
     $sistring = "&amp;silast={$silast}&amp;sifirst={$sifirst}";
 
     if ($firstnamesort) {
         print
-            "အမည်"."<a href=\"./?course={$course->id}{$sistring}\">".'</a>';
+            "<span style='font-size:17px;font-weight:600;color:green;'>အမည်</span>"."<a href=\"./?course={$course->id}{$sistring}\">".'</a>';
     } else {
         print "<a href=\"./?course={$course->id}&amp;sort=firstname{$sistring}\">".
-            "အမည်".'</a>';
+            "<span style='font-size:17px;font-weight:600;color:green;'>အမည်</span>".'</a>';
     }
     print '</th>';
 /************************/
