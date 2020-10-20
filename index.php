@@ -329,7 +329,7 @@ foreach($activities as $activity) {
         print '<th scope="col" class="completion-header '.$datepassedclass.'">'.
             '<a href="'.$CFG->wwwroot.'/mod/'.$activity->modname.
             '/view.php?id='.$activity->id.'" title="' . s($displayname) . '">'.
-            '<div class="rotated-text-container" style="width:30px!important;"><span class="rotated-text" style="position:relative;left:-17px;font-size:16px;font-weight:600;color:green;">'.$shortenedname.'</span></div>'.
+            '<div class="rotated-text-container"><span class="rotated-text" style="font-size:16px;font-weight:600;color:green;">'.$shortenedname.'</span></div>'.
             '<div class="modicon">'.
             $OUTPUT->image_icon('icon', get_string('modulename', $activity->modname), $activity->modname) .
             '</div>'.
