@@ -290,7 +290,7 @@ if (!$csv) {
     }
     print '</th>';
 /************************/
-    print '<th scope="col" class="completion-sortchoice" style="font-size:17px;font-weight:600;color:green;">အဖေအမည်</th><th scope="col" class="completion-sortchoice" style="font-size:17px;font-weight:600;color:green;">ကျောင်းအမည်</th><th scope="col" class="completion-sortchoice" style="font-size:17px;font-weight:600;color:green;">မြို့နယ်</th>';
+    print '<th scope="col" class="completion-sortchoice" style="font-size:17px;font-weight:600;color:green;">အဖေအမည်</th><th scope="col" class="completion-sortchoice" style="font-size:17px;font-weight:600;color:green;">ကျောင်းအမည်</th><th scope="col" class="completion-sortchoice" style="font-size:17px;font-weight:600;color:green;">နောက်ဆုံးကျောင်းတက်ခဲ့သည့်နှစ်</th><th scope="col" class="completion-sortchoice" style="font-size:17px;font-weight:600;color:green;">လက်ရှိနေထိုင်သည့်မြို့နယ်</th><th scope="col" class="completion-sortchoice" style="font-size:17px;font-weight:600;color:green;">မွေးရပ်မြို့နယ်</th>';
 /************************/
     // Print user identity columns
     foreach ($extrafields as $field) {
@@ -323,7 +323,7 @@ foreach($activities as $activity) {
     $displayname = format_string($activity->name, true, array('context' => $activity->context));
 
     if ($csv) {
-        print $sep.csv_quote('အဖေအမည်').$sep.csv_quote('ကျောင်းအမည်').$sep.csv_quote('မြို့နယ်').$sep.csv_quote($displayname).$sep.csv_quote($datetext);
+        print $sep.csv_quote('အဖေအမည်').$sep.csv_quote('ကျောင်းအမည်').$sep.csv_quote('နောက်ဆုံးကျောင်းတက်ခဲ့သည့်နှစ်').$sep.csv_quote('လက်ရှိနေထိုင်သည့်မြို့နယ်').$sep.csv_quote('မွေးရပ်မြို့နယ်').$sep.csv_quote($displayname).$sep.csv_quote($datetext);
     } else {
         $shortenedname = shorten_text($displayname);
         print '<th scope="col" class="completion-header '.$datepassedclass.'">'.
@@ -376,13 +376,23 @@ foreach($progress as $user) {
               FROM {user_info_field} AS f
               WHERE f.shortname = 'school'");
 
+    $type_last_attended_year = $DB->get_field_sql("SELECT f.id 
+              FROM {user_info_field} AS f
+              WHERE f.shortname = 'last_attended_year'");
+
     $type_township_name = $DB->get_field_sql("SELECT f.id 
               FROM {user_info_field} AS f
               WHERE f.shortname = 'township'");
 
+    $type_hometownship_name = $DB->get_field_sql("SELECT f.id 
+              FROM {user_info_field} AS f
+              WHERE f.shortname = 'hometownship'");
+
     $fathername = $DB->get_field_sql("SELECT data FROM {user_info_data} WHERE fieldid = '$type_father_name' AND userid='$user->id'");
     $schoolname = $DB->get_field_sql("SELECT data FROM {user_info_data} WHERE fieldid = '$type_school_name' AND userid='$user->id'");
+    $lastattendedyear = $DB->get_field_sql("SELECT data FROM {user_info_data} WHERE fieldid = '$type_last_attended_year' AND userid='$user->id'");
     $township = $DB->get_field_sql("SELECT data FROM {user_info_data} WHERE fieldid = '$type_township_name' AND userid='$user->id'");
+    $hometownship = $DB->get_field_sql("SELECT data FROM {user_info_data} WHERE fieldid = '$type_hometownship_name' AND userid='$user->id'");
 
     if ($csv) {
         echo $sep . csv_quote($fathername);
@@ -395,12 +405,26 @@ foreach($progress as $user) {
     } else {
         echo '<td>'.$schoolname.'</td>';
     }
-    
+
+    if ($csv) {
+        echo $sep . csv_quote($lastattendedyear);
+    } else {
+        echo '<td>'.$lastattendedyear.'</td>';
+    }
+
     if ($csv) {
         echo $sep . csv_quote($township);
     } else {
         echo '<td>'.$township.'</td>';
+    }  
+    
+    if ($csv) {
+        echo $sep . csv_quote($hometownship);
+    } else {
+        echo '<td>'.$hometownship.'</td>';
     }
+
+
     /******************/
     // Progress for each activity
     foreach($activities as $activity) {
