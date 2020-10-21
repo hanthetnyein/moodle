@@ -186,7 +186,12 @@ abstract class quiz_attempts_report_table extends table_sql {
               FROM {user_info_field} AS f
               WHERE f.shortname = 'last_attended_year'");
 	    $last_attended_year = $DB->get_field_sql("SELECT data FROM {user_info_data} WHERE fieldid = '$type_last_attended_year' AND userid='$userid'");
-            return  $last_attended_year;
+	    if($last_attended_year=='') {
+            	return  '-';
+	    }
+	    else {
+            	return  $last_attended_year;
+	    }
     }
     public function col_school($attempt) {
             global $DB;
@@ -195,7 +200,12 @@ abstract class quiz_attempts_report_table extends table_sql {
               FROM {user_info_field} AS f
               WHERE f.shortname = 'school'");
 	    $school = $DB->get_field_sql("SELECT data FROM {user_info_data} WHERE fieldid = '$type_school' AND userid='$userid'");
-            return  $school;
+	    if($school=='') {
+            	return  '-';
+	    }
+	    else {
+            	return  $school;
+	    }
     }
     public function col_township($attempt) {
             global $DB;
@@ -204,7 +214,12 @@ abstract class quiz_attempts_report_table extends table_sql {
               FROM {user_info_field} AS f
               WHERE f.shortname = 'township'");
 	    $township = $DB->get_field_sql("SELECT data FROM {user_info_data} WHERE fieldid = '$type_township' AND userid='$userid'");
-            return $township;
+	    if($township=='') {
+            	return  '-';
+	    }
+	    else {
+            	return $township;
+	    }
     }
     public function col_hometownship($attempt) {
             global $DB;
@@ -213,7 +228,12 @@ abstract class quiz_attempts_report_table extends table_sql {
               FROM {user_info_field} AS f
               WHERE f.shortname = 'hometownship'");
 	    $hometownship = $DB->get_field_sql("SELECT data FROM {user_info_data} WHERE fieldid = '$type_hometownship' AND userid='$userid'");
-            return  $hometownship;
+	    if($hometownship=='') {
+            	return  '-';
+	    }
+	    else {
+		return  $hometownship;
+	    }
     }
     /**
      * Generate the display of the start time column.
