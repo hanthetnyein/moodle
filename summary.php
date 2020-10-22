@@ -1,17 +1,60 @@
 <style>
+
+@media only screen and (min-width: 768px) {
+	.moodle-dialogue-content {
+		width: 350px!important;
+	}
+	.moodle-dialogue-content .moodle-dialogue-hd {
+		border-top-left-radius: 4px!important;
+		border-top-right-radius: 4px!important;
+	}
+	.moodle-dialogue-content {
+		border-radius: 5px!important;
+		border: none!important;
+	}
+}
+
 .moodle-dialogue-content {
-	border-radius: 5px!important;
 	background: #fff!important;
 }
 
-.moodle-dialogue-content .moodle-dialogue-hd {
+#region-main h2 {
+	color: #0bb04d!important;
+}
+
+#region-main h3 {
+	color: #1d9ccf!important;
+	font-size: 20px!important;
+}
+
+.generaltable th {
 	color: green!important;
+}
+
+.submitbtns .btn-secondary {
+	border-radius: 4px!important;
+	background: #65ab65!important;
+	color: #fff!important;
+	border: none!important;
+	font-weight: 600!important;
+}
+
+.moodle-dialogue-content .moodle-dialogue-hd {
+	color: #fff!important;
+	background: #40c94c!important;
 }
 
 .moodle-dialogue-content .moodle-dialogue-hd h1 {
 	font-size: 21px!important;
 	font-weight: 600!important;
+	width: 100%!important;
+	text-align: center!important;
 }
+
+.moodle-dialogue-content .moodle-dialogue-bd {
+	padding-bottom: 15px!important;
+}
+
 .moodle-dialogue-content .closebutton {
 	color: red!important;
 }
@@ -23,7 +66,11 @@
 
 .moodle-dialogue-content .btn-primary {
 	border-radius: 4px!important;
-	background: #18c927!important;
+	background: #EC407A!important;
+	-webkit-box-shadow: 0px 0px 5px 0px #F06292!important;
+	-moz-box-shadow: 0px 0px 5px 0px #F06292!important;
+	-o-box-shadow: 0px 0px 5px 0px #F06292!important;
+	-ms-box-shadow: 0px 0px 5px 0px #F06292!important;
 	color: #fff!important;
 	border: none!important;
 	font-weight: 600!important;
@@ -31,8 +78,11 @@
 
 .moodle-dialogue-content .btn-secondary {
 	border-radius: 4px!important;
-	background: #d9d50b!important;
-	color: #fff!important;
+	-webkit-box-shadow: inset 0px 0px 5px -1px #555!important;
+	-moz-box-shadow: inset 0px 0px 5px -1px #555!important;
+	-o-box-shadow: inset 0px 0px 5px -1px #555!important;
+	-ms-box-shadow: inset 0px 0px 5px -1px #555!important;
+	color: #666!important;
 	border: none!important;
 	font-weight: 600!important;
 }
