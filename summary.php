@@ -20,6 +20,7 @@
 
 #region-main h2 {
 	color: #0bb04d!important;
+	font-size: 22px!important;
 }
 
 #region-main h3 {
