@@ -205,11 +205,11 @@ abstract class quiz_attempts_report extends quiz_default_report {
 	$columns[]= 'fathername';
         $headers[]= "အဖေအမည်";
 
-	$columns[]= 'last_attended_year';
-        $headers[]= "နောက်ဆုံးကျောင်းတက်ခဲ့သည့်နှစ်";
-
 	$columns[]= 'school';
         $headers[]= "ကျောင်းအမည်";
+
+	$columns[]= 'last_attended_year';
+        $headers[]= "နောက်ဆုံးကျောင်းတက်ခဲ့သည့်နှစ်";
 
 	$columns[]= 'township';
         $headers[]= "လက်ရှိနေထိုင်သည့်မြို့နယ်";

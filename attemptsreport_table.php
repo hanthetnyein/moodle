@@ -179,20 +179,6 @@ abstract class quiz_attempts_report_table extends table_sql {
             return  $fathername;
     }
 
-    public function col_last_attended_year($attempt) {
-            global $DB;
-	    $userid = $attempt->userid;
-	    $type_last_attended_year = $DB->get_field_sql("SELECT f.id 
-              FROM {user_info_field} AS f
-              WHERE f.shortname = 'last_attended_year'");
-	    $last_attended_year = $DB->get_field_sql("SELECT data FROM {user_info_data} WHERE fieldid = '$type_last_attended_year' AND userid='$userid'");
-	    if($last_attended_year=='') {
-            	return  '-';
-	    }
-	    else {
-            	return  $last_attended_year;
-	    }
-    }
     public function col_school($attempt) {
             global $DB;
 	    $userid = $attempt->userid;
@@ -207,6 +193,22 @@ abstract class quiz_attempts_report_table extends table_sql {
             	return  $school;
 	    }
     }
+
+    public function col_last_attended_year($attempt) {
+            global $DB;
+	    $userid = $attempt->userid;
+	    $type_last_attended_year = $DB->get_field_sql("SELECT f.id 
+              FROM {user_info_field} AS f
+              WHERE f.shortname = 'last_attended_year'");
+	    $last_attended_year = $DB->get_field_sql("SELECT data FROM {user_info_data} WHERE fieldid = '$type_last_attended_year' AND userid='$userid'");
+	    if($last_attended_year=='') {
+            	return  '-';
+	    }
+	    else {
+            	return  $last_attended_year;
+	    }
+    }
+
     public function col_township($attempt) {
             global $DB;
 	    $userid = $attempt->userid;
