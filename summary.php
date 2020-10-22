@@ -29,7 +29,8 @@
 }
 
 .generaltable th {
-	color: green!important;
+	color: green!important;	
+	background: #fffba8!important;
 }
 
 .submitbtns .btn-secondary {
