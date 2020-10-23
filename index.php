@@ -309,6 +309,9 @@ if (!$csv) {
 
 // Activities
 $formattedactivities = array();
+if ($csv) {
+	print csv_quote('အမည်').$sep.csv_quote('အဖေအမည်').$sep.csv_quote('ကျောင်းအမည်').$sep.csv_quote('နောက်ဆုံးကျောင်းတက်ခဲ့သည့်နှစ်').$sep.csv_quote('လက်ရှိနေထိုင်သည့်မြို့နယ်').$sep.csv_quote('မွေးရပ်မြို့နယ်');
+}
 foreach($activities as $activity) {
     $datepassed = $activity->completionexpected && $activity->completionexpected <= time();
     $datepassedclass = $datepassed ? 'completion-expired' : '';
@@ -323,7 +326,7 @@ foreach($activities as $activity) {
     $displayname = format_string($activity->name, true, array('context' => $activity->context));
 
     if ($csv) {
-        print $sep.csv_quote('အဖေအမည်').$sep.csv_quote('ကျောင်းအမည်').$sep.csv_quote('နောက်ဆုံးကျောင်းတက်ခဲ့သည့်နှစ်').$sep.csv_quote('လက်ရှိနေထိုင်သည့်မြို့နယ်').$sep.csv_quote('မွေးရပ်မြို့နယ်').$sep.csv_quote($displayname).$sep.csv_quote($datetext);
+        print $sep.csv_quote($displayname).$sep.csv_quote($datetext);
     } else {
         $shortenedname = shorten_text($displayname);
         print '<th scope="col" class="completion-header '.$datepassedclass.'">'.
