@@ -27,6 +27,8 @@
 #region-main .answer input[type="radio"]:checked + *::before {
   background: radial-gradient(teal 0%, teal 40%, transparent 50%, transparent);
   border-color: teal;
+  position: relative;
+  border: 1px solid teal;
 }
 #region-main .answer input[type="radio"]:checked + * {
   color: teal;
