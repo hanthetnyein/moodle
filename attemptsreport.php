@@ -1,3 +1,14 @@
+<style>
+.header {
+	border: 1px solid #b4b6b8!important;
+	background: #fff!important;
+}
+.header a {
+	color: #2379eb!important;
+	font-weight: 600!important;
+	pointer-events: none;
+}
+</style>
 <?php
 // This file is part of Moodle - http://moodle.org/
 //
