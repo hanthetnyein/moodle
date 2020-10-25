@@ -76,7 +76,7 @@ class activity_navigation implements renderable, templatable {
                 'id' => 'prev-activity-link',
                 'title' => $linkname,
             ];
-            $this->prevlink = new \action_link($linkurl, '<span style="position:relative;top:-10px;">'.$OUTPUT->larrow().'</span>' . ' ' . '<div id="l_link">'.$linkname.'</div>', null, $attributes);
+            $this->prevlink = new \action_link($linkurl, '<span id="activity_nav_arrow">'.$OUTPUT->larrow().'</span>' . ' ' .'<span id="activity_nav_text">'.$linkname.'</span>', null, $attributes);
         }
 
         // Check if there is a next module to display.
@@ -92,7 +92,7 @@ class activity_navigation implements renderable, templatable {
                 'id' => 'next-activity-link',
                 'title' => $linkname,
             ];
-            $this->nextlink = new \action_link($linkurl, '<div id="r_link">'.$linkname.'</div>'. ' ' .'<span style="position:relative;top:-10px;">'. $OUTPUT->rarrow().'</span>', null, $attributes);
+            $this->nextlink = new \action_link($linkurl, '<span id="activity_nav_text">'.$linkname.'</span>' . ' ' .'<span id="activity_nav_arrow">'. $OUTPUT->rarrow().'</span>', null, $attributes);
         }
 
         // Render the activity list dropdown menu if available.
