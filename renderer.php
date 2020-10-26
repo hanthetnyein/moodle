@@ -1,67 +1,3 @@
-<style>
-@media only screen and (max-width: 767px) {
-#cat.col-md-4 {
-	flex: 0 0 50%;
-    	max-width: 50%;
-}
-}
-@media only screen and (max-width: 404px) {
-#cat.col-md-4 {
-	flex: 0 0 100%;
-    	max-width: 100%;
-}
-}
-@media only screen and (max-width: 603px) {
-	#category_label {
-	font-size: 19px!important;
-}
-}
-@media only screen and (max-width: 561px) {
-	#category_label {
-	font-size: 18px!important;
-}
-}
-@media only screen and (max-width: 510px) {
-	#category_label {
-	font-size: 17px!important;
-}
-}
-@media only screen and (max-width: 483px) {
-	#category_label {
-	font-size: 16px!important;
-}
-}
-@media only screen and (max-width: 453px) {
-	#category_label {
-	font-size: 15px!important;
-}
-}
-@media only screen and (max-width: 404px) {
-	#category_label {
-	font-size: 19px!important;
-}
-}
-@media only screen and (max-width: 305px) {
-	#category_label {
-	font-size: 18px!important;
-}
-}
-@media only screen and (max-width: 297px) {
-	#category_label {
-	font-size: 17px!important;
-}
-}
-@media only screen and (max-width: 282px) {
-	#category_label {
-	font-size: 16px!important;
-}
-}
-@media only screen and (max-width: 261px) {
-	#category_label {
-	font-size: 15px!important;
-}
-}
-</style>
 <?php
 
 // This file is part of Moodle - http://moodle.org/
@@ -1592,7 +1528,7 @@ class core_course_renderer extends plugin_renderer_base {
         $content .= html_writer::start_tag('div style="width:260px;height:90%;border-radius:5px;"', array('class' => 'info'));
 
         $content .= html_writer::tag(($depth > 1) ? 'h4' : 'figcaption style="padding:0;"','<span>'.$contentimg.'</span>', array('class' => 'categoryname'));
-	$content .= '<div id="category_label" style="display:inline-block;width:100%;overflow:hidden;text-overflow: ellipsis;overflow: hidden!important;white-space: nowrap;position:absolute;bottom:0;-moz-transform:translateX(-50%);-o-transform:translateX(-50%);-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);">'.$categoryname.'</div>';
+       	$content .= '<div id="category_label" style="display:inline-block;width:100%;overflow:hidden;text-overflow: ellipsis;overflow: hidden!important;white-space: nowrap;position:absolute;bottom:0;-moz-transform:translateX(-50%);-o-transform:translateX(-50%);-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);">'.$categoryname.'</div>';
         $content .= html_writer::end_tag('div'); // .info
 
         // add category content to the output
@@ -2728,4 +2664,3 @@ class coursecat_helper {
         return $name;
     }
 }
-
